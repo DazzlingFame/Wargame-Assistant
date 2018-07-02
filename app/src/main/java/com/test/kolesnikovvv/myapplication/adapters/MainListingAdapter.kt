@@ -1,52 +1,35 @@
 package com.test.kolesnikovvv.myapplication.adapters
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.test.kolesnikovvv.myapplication.R
 import com.test.kolesnikovvv.myapplication.objects.Unit
 import com.test.kolesnikovvv.myapplication.viewHolders.MainListViewHolder
 
-class MainListingAdapter(context: Context, items: ArrayList<Unit>): BaseAdapter() {
-    var lInflater: LayoutInflater
-    var objects: ArrayList<Unit>
+class MainListingAdapter(private val myDataset: ArrayList<Unit>, private val clickListener: (Unit) -> kotlin.Unit) :
+        RecyclerView.Adapter<MainListViewHolder>() {
 
-    init {
-        objects = items
-        lInflater = LayoutInflater.from(context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainListViewHolder {
+
+        val element: View = LayoutInflater.from(parent.context).inflate(R.layout.element_main_listing, parent, false)
+
+        return MainListViewHolder(element)
     }
 
-    override fun getCount(): Int {
-        return objects.size
+    // Replace the contents of a view (invoked by the layout manager)
+    override fun onBindViewHolder(holder: MainListViewHolder, position: Int) {
+        holder.name.text = myDataset[position].name
+        holder.stats.text = myDataset[position].stats
+        holder.img.setImageResource(myDataset[position].image)
     }
 
-    override fun getItem(position: Int): Any {
-        return objects[position]
+    override fun getItemCount() = myDataset.size
+
+    override fun onBindViewHolder(holder: MainListViewHolder, position: Int, payloads: MutableList<Any>) {
+//        super.onBindViewHolder(holder, position, payloads)
+        holder.bind(myDataset[position], clickListener)
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        val view: View?
-        val vh: MainListViewHolder
-        if (convertView == null) {
-            view = this.lInflater.inflate(R.layout.element_main_listing, parent, false)
-            vh = MainListViewHolder(view)
-            view.tag = vh
-        }
-        else {
-            view = convertView
-            vh = view.tag as MainListViewHolder
-        }
-
-        vh.name.text = objects[position].name
-        vh.stats.text = objects[position].stats
-        vh.img.setImageResource(objects[position].image)
-        return view
-    }
 }

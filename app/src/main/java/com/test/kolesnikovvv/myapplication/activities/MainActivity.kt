@@ -6,10 +6,11 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.AdapterView
-import android.widget.ListView
 import com.test.kolesnikovvv.myapplication.R
 import com.test.kolesnikovvv.myapplication.adapters.MainListingAdapter
 import com.test.kolesnikovvv.myapplication.objects.Unit
@@ -20,11 +21,14 @@ import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -34,18 +38,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         val items: ArrayList<Unit> = UnitData().necrons
-        val lv = findViewById<ListView>(R.id.list_view_main)
-        lv.adapter = MainListingAdapter(this, items)
 
-        lv.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            val intent = Intent(this, BigCardActivity::class.java)
-            intent.putExtra("name", items[position].name)
-            intent.putExtra("stats", items[position].stats)
-            intent.putExtra("image", items[position].image.toString())
-            intent.putExtra("bigData", items[position].bigData)
-            startActivity(intent)
+        viewManager = LinearLayoutManager(this)
+        viewAdapter = MainListingAdapter(items, {unitItem: Unit -> unitItemClicked(unitItem)})
+
+        recyclerView = findViewById<RecyclerView>(R.id.rv_main).apply {
+
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
         }
+
+        recyclerView.itemAnimator = DefaultItemAnimator()
     }
+
+    private fun unitItemClicked(unitItem: Unit) {
+        val intent = Intent(this, BigCardActivity::class.java)
+        intent.putExtra("name", unitItem.name)
+        intent.putExtra("stats", unitItem.stats)
+        intent.putExtra("image", unitItem.image.toString())
+        intent.putExtra("bigData", unitItem.bigData)
+        startActivity(intent)
+    }
+
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -75,23 +90,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_necrons -> {
-                val items: ArrayList<Unit> = UnitData().necrons
-                val lv = findViewById<ListView>(R.id.list_view_main)
-                lv.adapter = MainListingAdapter(this, items)
+                viewAdapter = MainListingAdapter(UnitData().necrons, {unitItem: Unit -> unitItemClicked(unitItem)})
+
+                recyclerView = findViewById<RecyclerView>(R.id.rv_main).apply {
+                    setHasFixedSize(true)
+                    layoutManager = viewManager
+                    adapter = viewAdapter
+                }
+
                 drawer_imageView.setImageResource(R.drawable.necron_warrior)
             }
             R.id.nav_admechs -> {
-                val items: ArrayList<Unit> = UnitData().adeptusMechanicus
-                val lv = findViewById<ListView>(R.id.list_view_main)
-                lv.adapter = MainListingAdapter(this, items)
+                viewAdapter = MainListingAdapter(UnitData().adeptusMechanicus, {unitItem: Unit -> unitItemClicked(unitItem)})
+
+                recyclerView = findViewById<RecyclerView>(R.id.rv_main).apply {
+                    setHasFixedSize(true)
+                    layoutManager = viewManager
+                    adapter = viewAdapter
+                }
+
                 drawer_imageView.setImageResource(R.drawable.necron_cryptek)
             }
-            R.id.nav_share -> {
-                val intent = Intent(this, MissionMeter::class.java)
+            R.id.nav_vp_tracker -> {
+                val intent = Intent(this, MissionMeterActivity::class.java)
                 startActivity(intent)
-            }
-            R.id.nav_send -> {
-
             }
         }
 
