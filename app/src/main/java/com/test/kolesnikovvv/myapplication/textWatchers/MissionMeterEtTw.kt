@@ -2,7 +2,7 @@ package com.test.kolesnikovvv.myapplication.textWatchers
 
 import android.text.Editable
 import android.text.TextWatcher
-import com.test.kolesnikovvv.myapplication.objects.GamePoints
+import com.test.kolesnikovvv.myapplication.entity.GamePoints
 
 class MissionMeterEtTw(_my: Boolean, _key: Int): TextWatcher {
     private val key = _key

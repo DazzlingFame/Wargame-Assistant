@@ -1,4 +1,4 @@
-package com.test.kolesnikovvv.myapplication.activities
+package com.test.kolesnikovvv.myapplication.view.activities
 
 import android.content.Context
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import com.test.kolesnikovvv.myapplication.R
-import com.test.kolesnikovvv.myapplication.objects.GamePoints
+import com.test.kolesnikovvv.myapplication.entity.GamePoints
 import com.test.kolesnikovvv.myapplication.textWatchers.MissionMeterEtTw
 import kotlinx.android.synthetic.main.activity_mission_meter.*
 import kotlinx.android.synthetic.main.content_mission_meter.*
@@ -14,8 +14,9 @@ import android.widget.Toast
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.support.v4.view.ViewCompat
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.EditText
 
 
@@ -53,76 +54,48 @@ class MissionMeterActivity : AppCompatActivity() {
             builder.setTitle("Поделиться результатами")
             builder.setView(inflator)
             val myNameEt = inflator.findViewById<EditText>(R.id.et_my_name)
-            if (GamePoints.myName != "вас")
-                myNameEt.setText(GamePoints.myName)
+            myNameEt.addTextChangedListener(getNameCorrectTextWatcher(myNameEt))
+            myNameEt.setText(GamePoints.myName)
             val oppNameEt = inflator.findViewById<EditText>(R.id.et_opp_name)
-                    builder
-                    .setPositiveButton("Отправить") { dialog, id ->
-//                        if (myNameEt.text.toString() == "") {
-//                            ViewCompat.setBackgroundTintList(myNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
-//                        }
-//                        if (myNameEt.text.toString() != "вас")
-//                            GamePoints.myName = myNameEt.text.toString()
-//                        if (oppNameEt.text.toString() != "оппонента")
-//                            GamePoints.oppName = oppNameEt.text.toString()
-//
-//                        val sendIntent = Intent()
-//                        sendIntent.action = Intent.ACTION_SEND
-//                        sendIntent
-//                                .putExtra(Intent.EXTRA_TEXT,
-//                                        GamePoints.generateShortResult())
-//                        sendIntent.type = "text/plain"
-//                        try {
-//                            startActivity(sendIntent)
-//                        } catch (ex: android.content.ActivityNotFoundException) {
-//                            Toast.makeText(applicationContext, "Please Install VK", Toast.LENGTH_SHORT).show()
-//                        }
-                    }
-                    .setNegativeButton("Отмена") { dialog, which -> }
+            oppNameEt.addTextChangedListener(getNameCorrectTextWatcher(oppNameEt))
+
+            builder
+                    .setPositiveButton("Отправить") { _, _ -> }
+                    .setNegativeButton("Отмена") { _, _ -> }
             val dialog: AlertDialog = builder.create()
             dialog.show()
-            val btnPositive: Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            btnPositive.setOnClickListener {
-                if (myNameEt.text.toString() == "") {
-                    ViewCompat.setBackgroundTintList(myNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
-                } else {
-                    if (myNameEt.text.toString() != "вас")
-                        GamePoints.myName = myNameEt.text.toString()
-                    if (oppNameEt.text.toString() != "оппонента")
-                        GamePoints.oppName = oppNameEt.text.toString()
 
-                    val sendIntent = Intent()
-                    sendIntent.action = Intent.ACTION_SEND
-                    sendIntent
-                            .putExtra(Intent.EXTRA_TEXT,
-                                    GamePoints.generateShortResult())
-                    sendIntent.type = "text/plain"
-                    try {
-                        startActivity(sendIntent)
-                    } catch (ex: android.content.ActivityNotFoundException) {
-                        Toast.makeText(applicationContext, "Please Install VK", Toast.LENGTH_SHORT).show()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                when {
+                    myNameEt.text.toString() == "" -> ViewCompat.setBackgroundTintList(myNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
+                    oppNameEt.text.toString() == "" -> ViewCompat.setBackgroundTintList(oppNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
+                    else -> {
+                        GamePoints.myName = myNameEt.text.toString()
+                        GamePoints.oppName = oppNameEt.text.toString()
+                        dialog.dismiss()
+                        sendStringOutToIntent(GamePoints.generateShortResult())
                     }
                 }
             }
         }
-        btn_get_result.setOnClickListener { 
+        btn_get_result.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Результат игры")
-            builder.setMessage(GamePoints.generateResult())
-            builder.setPositiveButton("Ok") { dialog, which ->  }
+            builder.setMessage(GamePoints.generateFullResult())
+//            builder.setPositiveButton("Ok") { dialog, which ->  }
             builder.create().show()
         }
         ib_reset_vp.setOnClickListener {
             val builder = AlertDialog.Builder(this@MissionMeterActivity)
             builder.setTitle("Сбросить значения?")
 
-            builder.setPositiveButton("Да") { dialog, which ->
+            builder.setPositiveButton("Да") { _, _ ->
                 GamePoints.reset()
                 setDataToEtFromClass()                                                //Обновление значений в UI
                 setDataToCbFromClass()
             }
 
-            builder.setNegativeButton("Нет") { dialog, which ->
+            builder.setNegativeButton("Нет") { _, _ ->
             }
 
             builder.create().show()
@@ -315,6 +288,30 @@ class MissionMeterActivity : AppCompatActivity() {
             putInt("oppBl", GamePoints.oppBl)
             putString("myName", GamePoints.myName)
             apply()
+        }
+    }
+
+    private fun sendStringOutToIntent(text: String) {
+        val sendIntent = Intent()
+        sendIntent.action = Intent.ACTION_SEND
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text)
+        sendIntent.type = "text/plain"
+        try {
+            startActivity(sendIntent)
+        } catch (ex: android.content.ActivityNotFoundException) {
+            Toast.makeText(applicationContext, "Please Install VK", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun getNameCorrectTextWatcher(elem: EditText): TextWatcher {
+        return object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable) {
+                ViewCompat.setBackgroundTintList(elem, ColorStateList.valueOf(getColor(R.color.colorAccent)))
+            }
         }
     }
 }

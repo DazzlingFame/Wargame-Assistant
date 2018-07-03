@@ -1,10 +1,10 @@
-package com.test.kolesnikovvv.myapplication.objects
+package com.test.kolesnikovvv.myapplication.entity
 
 class GamePoints {
 
     companion object {
-        var myName = "вас"
-        var oppName = "оппонента"
+        var myName = ""
+        var oppName = ""
         var myFb = 0
         var oppFb = 0
         var myWk = 0
@@ -40,47 +40,27 @@ class GamePoints {
         }
 
         fun reset() {
-            this.myFb = 0
-            this.oppFb = 0
-            this.myWk = 0
-            this.oppWk = 0
-            this.myBl = 0
-            this.oppBl = 0
-            this.myTurnVp = arrayOf("","","","","","","")
-            this.oppTurnVp = arrayOf("","","","","","","")
+            myFb = 0
+            oppFb = 0
+            myWk = 0
+            oppWk = 0
+            myBl = 0
+            oppBl = 0
+            myTurnVp = arrayOf("","","","","","","")
+            oppTurnVp = arrayOf("","","","","","","")
         }
 
-        fun generateResult(): String {
-            var myTotalVp = 0
-            for (i in myTurnVp) {
-                if (i != "")
-                    myTotalVp += i.toInt()
-            }
-            myTotalVp += myFb + myWk + myBl
-
-            var oppTotalVp = 0
-            for (i in oppTurnVp) {
-                if (i != "")
-                    oppTotalVp += i.toInt()
-            }
-            oppTotalVp += oppFb + oppWk + oppBl
-
-            val vpDifference: Int
-            var winnerName = this.myName
-
-            if (myTotalVp > oppTotalVp) {
-                vpDifference = myTotalVp - oppTotalVp
-                winnerName = this.myName
-            }
-            else {
-                vpDifference = oppTotalVp - myTotalVp
-                winnerName = this.oppName
-            }
-
-            return "У вас $myTotalVp победных очков\nУ противника $oppTotalVp победных очков\nРазница - $vpDifference в пользу $winnerName"
+        fun generateFullResult(): String {
+            val result = generateResult()
+            return "У вас ${result["myTotalVp"]} победных очков\nУ оппонента ${result["oppTotalVp"]} победных очков\nИтоговый счет: ${result["totalResult"]}/" + (20 - result["totalResult"]!!)
         }
 
         fun generateShortResult(): String {
+            val result = generateResult()
+            return "$myName - $oppName // ${result["myTotalVp"]} - ${result["oppTotalVp"]} // ${result["totalResult"]} - " + (20 - result["totalResult"]!!)
+        }
+
+        private fun generateResult(): Map<String, Int> {
             var myTotalVp = 0
             for (i in myTurnVp) {
                 if (i != "")
@@ -95,9 +75,17 @@ class GamePoints {
             }
             oppTotalVp += oppFb + oppWk + oppBl
 
-            val vpDifference = myTotalVp - oppTotalVp
+            val vpDifference = when {
+                myTotalVp - oppTotalVp > 20 -> 20
+                myTotalVp - oppTotalVp < -20 -> -20
+                else -> myTotalVp - oppTotalVp
+            }
+            val totalResult = 10 + vpDifference / 2
 
-            return "${this.myName} - ${this.oppName} // $myTotalVp - $oppTotalVp // $vpDifference"
+            return mapOf("myTotalVp" to myTotalVp,
+                    "oppTotalVp" to oppTotalVp,
+                    "totalResult" to totalResult)
         }
+
     }
 }

@@ -29,9 +29,9 @@
     <string name="turn_four_name">Ход 4</string>
     <string name="turn_five_name">Ход 5</string>
     <string name="victory_points_name">Победные очки</string>
-    <string name="first_blood_name">Первая кровь</string>
-    <string name="warlord_kill_name">Убийство полководца</string>
-    <string name="behind_enemy_lines_name">За рядами врага</string>
+    <string name="first_blood_name">First blood</string>
+    <string name="warlord_kill_name">Slay the Warlord</string>
+    <string name="behind_enemy_lines_name">Behind enemy lines</string>
     <string name="default_vp">0</string>
     <string name="turn_seven_name">Ход 7</string>
     <string name="turn_six_name">Ход 6</string>

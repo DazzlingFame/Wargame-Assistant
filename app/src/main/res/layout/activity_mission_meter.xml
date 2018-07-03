@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MissionMeterActivity">
+    tools:context=".view.activities.MissionMeterActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -17,18 +17,22 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+            <ImageButton
+                android:id="@+id/ib_reset_vp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@android:drawable/ic_menu_delete"
+                android:background="@color/colorPrimary"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
             <Button
                 android:id="@+id/btn_get_result"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/result_name" />
-            <ImageButton
-                android:id="@+id/ib_reset_vp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:src="@android:drawable/ic_menu_delete"
-                android:background="@color/colorPrimary"/>
+                android:text="@string/result_name"
+                android:background="@color/colorPrimary" />
 
     </android.support.v7.widget.Toolbar>
 

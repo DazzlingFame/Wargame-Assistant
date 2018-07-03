@@ -1,12 +1,12 @@
-package com.test.kolesnikovvv.myapplication.adapters
+package com.test.kolesnikovvv.myapplication.view.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.test.kolesnikovvv.myapplication.R
-import com.test.kolesnikovvv.myapplication.objects.Unit
-import com.test.kolesnikovvv.myapplication.viewHolders.MainListViewHolder
+import com.test.kolesnikovvv.myapplication.entity.Unit
+import com.test.kolesnikovvv.myapplication.view.viewHolders.MainListViewHolder
 
 class MainListingAdapter(private val myDataset: ArrayList<Unit>, private val clickListener: (Unit) -> kotlin.Unit) :
         RecyclerView.Adapter<MainListViewHolder>() {

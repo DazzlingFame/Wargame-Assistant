@@ -1,11 +1,11 @@
-package com.test.kolesnikovvv.myapplication.viewHolders
+package com.test.kolesnikovvv.myapplication.view.viewHolders
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.test.kolesnikovvv.myapplication.R
-import com.test.kolesnikovvv.myapplication.objects.Unit
+import com.test.kolesnikovvv.myapplication.entity.Unit
 
 class MainListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val name: TextView = itemView.findViewById(R.id.tv_element_name) as TextView

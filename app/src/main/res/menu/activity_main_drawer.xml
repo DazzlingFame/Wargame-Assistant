@@ -18,7 +18,7 @@
         </menu>
     </item>
 
-    <item android:title="Communicate">
+    <item android:title="Utility">
         <menu>
             <item
                 android:id="@+id/nav_vp_tracker"
