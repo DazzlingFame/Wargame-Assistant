@@ -35,6 +35,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.test.kolesnikovvv.myapplication.view.activities.MainActivity" />
         </activity>
+        <activity android:name=".view.activities.BaseActivity" />
     </application>
 
 </manifest>

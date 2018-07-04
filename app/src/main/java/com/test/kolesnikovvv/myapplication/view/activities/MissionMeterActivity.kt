@@ -1,23 +1,21 @@
 package com.test.kolesnikovvv.myapplication.view.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.view.WindowManager
 import com.test.kolesnikovvv.myapplication.R
 import com.test.kolesnikovvv.myapplication.entity.GamePoints
 import com.test.kolesnikovvv.myapplication.textWatchers.MissionMeterEtTw
 import kotlinx.android.synthetic.main.activity_mission_meter.*
 import kotlinx.android.synthetic.main.content_mission_meter.*
-import android.widget.Toast
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.support.v4.view.ViewCompat
+import android.support.v7.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.EditText
+import com.test.kolesnikovvv.myapplication.MissionMeterContract
+import com.test.kolesnikovvv.myapplication.presenter.MissionMeterPresenter
 
 
 /**
@@ -34,85 +32,130 @@ import android.widget.EditText
  * RESET ресете заносим пустые строки в соответствующие элементы массива класса
  * SAVE при onStop парсим массивы значений класса в строку и пишем в SP с ключом gameData
  **/
-class MissionMeterActivity : AppCompatActivity() {
+class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
+
+    private var presenter: MissionMeterContract.Presenter? = null
+    private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar)}
+
+    override fun getToolbarInstance(): Toolbar? = toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission_meter)
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val window = window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.statusBarColor = getColor(R.color.colorPrimaryDark)
+        presenter = MissionMeterPresenter(this, this)
+
+        getToolbarInstance()
+        fixStatusBar()
 
         fab.setOnClickListener {
-            val linf = LayoutInflater.from(this)
-            val inflator = linf.inflate(R.layout.share_game_result_dialog, null)
-            val builder = AlertDialog.Builder(this)
-
-            builder.setTitle("Поделиться результатами")
-            builder.setView(inflator)
-            val myNameEt = inflator.findViewById<EditText>(R.id.et_my_name)
-            myNameEt.addTextChangedListener(getNameCorrectTextWatcher(myNameEt))
-            myNameEt.setText(GamePoints.myName)
-            val oppNameEt = inflator.findViewById<EditText>(R.id.et_opp_name)
-            oppNameEt.addTextChangedListener(getNameCorrectTextWatcher(oppNameEt))
-
-            builder
-                    .setPositiveButton("Отправить") { _, _ -> }
-                    .setNegativeButton("Отмена") { _, _ -> }
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
-
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                when {
-                    myNameEt.text.toString() == "" -> ViewCompat.setBackgroundTintList(myNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
-                    oppNameEt.text.toString() == "" -> ViewCompat.setBackgroundTintList(oppNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
-                    else -> {
-                        GamePoints.myName = myNameEt.text.toString()
-                        GamePoints.oppName = oppNameEt.text.toString()
-                        dialog.dismiss()
-                        sendStringOutToIntent(GamePoints.generateShortResult())
-                    }
-                }
-            }
+            presenter?.sendResultClicked()
         }
+
         btn_get_result.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Результат игры")
-            builder.setMessage(GamePoints.generateFullResult())
-//            builder.setPositiveButton("Ok") { dialog, which ->  }
-            builder.create().show()
+            presenter?.getFullResultClicked()
         }
+
         ib_reset_vp.setOnClickListener {
-            val builder = AlertDialog.Builder(this@MissionMeterActivity)
-            builder.setTitle("Сбросить значения?")
-
-            builder.setPositiveButton("Да") { _, _ ->
-                GamePoints.reset()
-                setDataToEtFromClass()                                                //Обновление значений в UI
-                setDataToCbFromClass()
-            }
-
-            builder.setNegativeButton("Нет") { _, _ ->
-            }
-
-            builder.create().show()
+            showResetDialog()
         }
 
         setListenersToEt()
         setListenersToCB()
 
-        getPreferencesToClass()
+        presenter?.onViewCreated()
 
-        setDataToEtFromClass()
-        setDataToCbFromClass()
     }
 
     override fun onStop() {
+        presenter?.saveData()
         super.onStop()
-        updatePreferencesFromClass()
+    }
+
+    override fun onDestroy() {
+        presenter?.onDestroy()
+        presenter = null
+        super.onDestroy()
+    }
+
+    override fun showFullResultDialog(result: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Результат игры")
+        builder.setMessage(result)
+        builder.create().show()
+    }
+
+    override fun showSendResultDialog(myName: String, result: String) {
+        val inflater = LayoutInflater.from(this).inflate(R.layout.share_game_result_dialog, null)
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("Поделиться результатами")
+        builder.setView(inflater)
+
+        val myNameEt = inflater.findViewById<EditText>(R.id.et_my_name)
+        myNameEt.addTextChangedListener(getNameCorrectTextWatcher(myNameEt))
+        myNameEt.setText(myName)
+
+        val oppNameEt = inflater.findViewById<EditText>(R.id.et_opp_name)
+        oppNameEt.addTextChangedListener(getNameCorrectTextWatcher(oppNameEt))
+
+        builder
+                .setPositiveButton("Отправить") { _, _ -> }
+                .setNegativeButton("Отмена") { _, _ -> }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            when {
+                myNameEt.text.toString() == "" -> ViewCompat.setBackgroundTintList(myNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
+                oppNameEt.text.toString() == "" -> ViewCompat.setBackgroundTintList(oppNameEt, ColorStateList.valueOf(getColor(R.color.warning_red)))
+                else -> {
+                    GamePoints.myName = myNameEt.text.toString()
+                    GamePoints.oppName = oppNameEt.text.toString()
+                    dialog.dismiss()
+
+                    presenter?.routResultOut(GamePoints.generateShortResult())
+                }
+            }
+        }
+    }
+
+    override fun showResetDialog() {
+        val builder = AlertDialog.Builder(this@MissionMeterActivity)
+        builder.setTitle("Сбросить значения?")
+
+        builder.setPositiveButton("Да") { _, _ ->
+            presenter?.resetClicked()
+        }
+
+        builder.setNegativeButton("Нет") { _, _ -> }
+
+        builder.create().show()
+    }
+
+    override fun setDataToView(myPoints: Array<String>, oppPoints: Array<String>, cbStatus: Array<Boolean>) {
+        et_turn_one_my_vp.setText(myPoints[0])
+        et_turn_two_my_vp.setText(myPoints[1])
+        et_turn_three_my_vp.setText(myPoints[2])
+        et_turn_four_my_vp.setText(myPoints[3])
+        et_turn_five_my_vp.setText(myPoints[4])
+        et_turn_six_my_vp.setText(myPoints[5])
+        et_turn_seven_my_vp.setText(myPoints[6])
+
+        et_turn_one_opp_vp.setText(oppPoints[0])
+        et_turn_two_opp_vp.setText(oppPoints[1])
+        et_turn_three_opp_vp.setText(oppPoints[2])
+        et_turn_four_opp_vp.setText(oppPoints[3])
+        et_turn_five_opp_vp.setText(oppPoints[4])
+        et_turn_six_opp_vp.setText(oppPoints[5])
+        et_turn_seven_opp_vp.setText(oppPoints[6])
+
+        cb_my_fb.isChecked = cbStatus[0]
+        cb_opp_fb.isChecked = cbStatus[1]
+        cb_my_wk.isChecked = cbStatus[2]
+        cb_opp_wk.isChecked = cbStatus[3]
+        cb_my_bl.isChecked = cbStatus[4]
+        cb_opp_bl.isChecked = cbStatus[5]
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -234,73 +277,6 @@ class MissionMeterActivity : AppCompatActivity() {
 //                apply()
 //            }
 //        }
-    }
-
-    private fun setDataToCbFromClass() {
-        cb_my_fb.isChecked = GamePoints.myFb == 1
-        cb_opp_fb.isChecked = GamePoints.oppFb == 1
-        cb_my_wk.isChecked = GamePoints.myWk == 1
-        cb_opp_wk.isChecked = GamePoints.oppWk == 1
-        cb_my_bl.isChecked = GamePoints.myBl == 1
-        cb_opp_bl.isChecked = GamePoints.oppBl == 1
-    }
-
-    private fun setDataToEtFromClass() {
-        et_turn_one_my_vp.setText(GamePoints.myTurnVp[0])
-        et_turn_one_opp_vp.setText(GamePoints.oppTurnVp[0])
-        et_turn_two_my_vp.setText(GamePoints.myTurnVp[1])
-        et_turn_two_opp_vp.setText(GamePoints.oppTurnVp[1])
-        et_turn_three_my_vp.setText(GamePoints.myTurnVp[2])
-        et_turn_three_opp_vp.setText(GamePoints.oppTurnVp[2])
-        et_turn_four_my_vp.setText(GamePoints.myTurnVp[3])
-        et_turn_four_opp_vp.setText(GamePoints.oppTurnVp[3])
-        et_turn_five_my_vp.setText(GamePoints.myTurnVp[4])
-        et_turn_five_opp_vp.setText(GamePoints.oppTurnVp[4])
-        et_turn_six_my_vp.setText(GamePoints.myTurnVp[5])
-        et_turn_six_opp_vp.setText(GamePoints.oppTurnVp[5])
-        et_turn_seven_my_vp.setText(GamePoints.myTurnVp[6])
-        et_turn_seven_opp_vp.setText(GamePoints.oppTurnVp[6])
-    }
-
-    private fun getPreferencesToClass() {
-        val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        val savedEtVp = sharedPref.getString("gameData", ",,,,,,,;,,,,,,,")
-
-        GamePoints.parseFromStringToClass(savedEtVp)
-        GamePoints.myFb = sharedPref.getInt("myFb", 0)
-        GamePoints.oppFb = sharedPref.getInt("oppFb", 0)
-        GamePoints.myWk = sharedPref.getInt("myWk", 0)
-        GamePoints.oppWk = sharedPref.getInt("oppWk", 0)
-        GamePoints.myBl = sharedPref.getInt("myBl", 0)
-        GamePoints.oppBl = sharedPref.getInt("oppBl", 0)
-        GamePoints.myName = sharedPref.getString("myName", "вас")
-    }
-
-    private fun updatePreferencesFromClass() {
-        val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putString("gameData", GamePoints.parseEtResultFromClassToString())
-            putInt("myFb", GamePoints.myFb)
-            putInt("oppFb", GamePoints.oppFb)
-            putInt("myWk", GamePoints.myWk)
-            putInt("oppWk", GamePoints.oppWk)
-            putInt("myBl", GamePoints.myBl)
-            putInt("oppBl", GamePoints.oppBl)
-            putString("myName", GamePoints.myName)
-            apply()
-        }
-    }
-
-    private fun sendStringOutToIntent(text: String) {
-        val sendIntent = Intent()
-        sendIntent.action = Intent.ACTION_SEND
-        sendIntent.putExtra(Intent.EXTRA_TEXT, text)
-        sendIntent.type = "text/plain"
-        try {
-            startActivity(sendIntent)
-        } catch (ex: android.content.ActivityNotFoundException) {
-            Toast.makeText(applicationContext, "Please Install VK", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun getNameCorrectTextWatcher(elem: EditText): TextWatcher {

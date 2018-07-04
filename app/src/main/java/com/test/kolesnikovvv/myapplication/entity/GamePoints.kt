@@ -87,5 +87,9 @@ class GamePoints {
                     "totalResult" to totalResult)
         }
 
+        fun getCbArray(): Array<Boolean> {
+            return  arrayOf(GamePoints.myFb == 1, GamePoints.oppFb == 1, GamePoints.myWk == 1, GamePoints.oppWk == 1, GamePoints.myBl == 1, GamePoints.oppBl == 1)
+        }
+
     }
 }
