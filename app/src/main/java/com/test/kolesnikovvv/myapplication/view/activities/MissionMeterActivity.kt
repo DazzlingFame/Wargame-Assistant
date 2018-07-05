@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import com.test.kolesnikovvv.myapplication.R
 import com.test.kolesnikovvv.myapplication.entity.GamePoints
-import com.test.kolesnikovvv.myapplication.textWatchers.MissionMeterEtTw
 import kotlinx.android.synthetic.main.activity_mission_meter.*
-import kotlinx.android.synthetic.main.content_mission_meter.*
 import android.content.res.ColorStateList
 import android.support.v4.view.ViewCompat
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.EditText
 import com.test.kolesnikovvv.myapplication.MissionMeterContract
+import com.test.kolesnikovvv.myapplication.entity.SecondaryMissionVp
+import com.test.kolesnikovvv.myapplication.entity.TurnVp
 import com.test.kolesnikovvv.myapplication.presenter.MissionMeterPresenter
-
+import com.test.kolesnikovvv.myapplication.view.adapters.SecondaryMissionsAdapter
+import com.test.kolesnikovvv.myapplication.view.adapters.TurnVpAdapter
 
 /**
  * Логика сохранения данных
@@ -36,6 +40,14 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
 
     private var presenter: MissionMeterContract.Presenter? = null
     private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar)}
+    private lateinit var turnVpRecyclerView: RecyclerView
+    private lateinit var turnVpViewAdapter: RecyclerView.Adapter<*>
+    private lateinit var turnVpViewManager: RecyclerView.LayoutManager
+
+    private lateinit var secMissionRecyclerView: RecyclerView
+    private lateinit var secMissionViewAdapter:RecyclerView.Adapter<*>
+    private lateinit var secMissionViewManager: RecyclerView.LayoutManager
+
 
     override fun getToolbarInstance(): Toolbar? = toolbar
 
@@ -59,9 +71,6 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
         ib_reset_vp.setOnClickListener {
             showResetDialog()
         }
-
-        setListenersToEt()
-        setListenersToCB()
 
         presenter?.onViewCreated()
     }
@@ -132,29 +141,25 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
         builder.create().show()
     }
 
-    override fun setDataToView(myPoints: Array<String>, oppPoints: Array<String>, cbStatus: Array<Boolean>) {
-        et_turn_one_my_vp.setText(myPoints[0])
-        et_turn_two_my_vp.setText(myPoints[1])
-        et_turn_three_my_vp.setText(myPoints[2])
-        et_turn_four_my_vp.setText(myPoints[3])
-        et_turn_five_my_vp.setText(myPoints[4])
-        et_turn_six_my_vp.setText(myPoints[5])
-        et_turn_seven_my_vp.setText(myPoints[6])
+    override fun setDataToView(etData: ArrayList<TurnVp>, secMissionsStatus: ArrayList<SecondaryMissionVp>) {
+        turnVpViewManager = LinearLayoutManager(this)
+        secMissionViewManager = LinearLayoutManager(this)
 
-        et_turn_one_opp_vp.setText(oppPoints[0])
-        et_turn_two_opp_vp.setText(oppPoints[1])
-        et_turn_three_opp_vp.setText(oppPoints[2])
-        et_turn_four_opp_vp.setText(oppPoints[3])
-        et_turn_five_opp_vp.setText(oppPoints[4])
-        et_turn_six_opp_vp.setText(oppPoints[5])
-        et_turn_seven_opp_vp.setText(oppPoints[6])
+        turnVpViewAdapter = TurnVpAdapter(etData)
+        turnVpRecyclerView = findViewById<RecyclerView>(R.id.rv_mission_meter).apply {
+            setHasFixedSize(true)
+            layoutManager = turnVpViewManager
+            adapter = turnVpViewAdapter
+            itemAnimator = DefaultItemAnimator()
+        }
 
-        cb_my_fb.isChecked = cbStatus[0]
-        cb_opp_fb.isChecked = cbStatus[1]
-        cb_my_wk.isChecked = cbStatus[2]
-        cb_opp_wk.isChecked = cbStatus[3]
-        cb_my_bl.isChecked = cbStatus[4]
-        cb_opp_bl.isChecked = cbStatus[5]
+        secMissionViewAdapter = SecondaryMissionsAdapter(secMissionsStatus) { item: SecondaryMissionVp -> presenter?.secMissionCbClicked(item) }
+        secMissionRecyclerView = findViewById<RecyclerView>(R.id.rv_sec_missions).apply {
+            setHasFixedSize(true)
+            layoutManager = secMissionViewManager
+            adapter = secMissionViewAdapter
+            itemAnimator = DefaultItemAnimator()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -162,121 +167,6 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
         return true
     }
 
-    private fun setListenersToEt() {
-        et_turn_one_my_vp.addTextChangedListener(MissionMeterEtTw(true,0))
-        et_turn_one_opp_vp.addTextChangedListener(MissionMeterEtTw(false, 0))
-        et_turn_two_my_vp.addTextChangedListener(MissionMeterEtTw(true, 1))
-        et_turn_two_opp_vp.addTextChangedListener(MissionMeterEtTw(false, 1))
-        et_turn_three_my_vp.addTextChangedListener(MissionMeterEtTw(true, 2))
-        et_turn_three_opp_vp.addTextChangedListener(MissionMeterEtTw(false, 2))
-        et_turn_four_my_vp.addTextChangedListener(MissionMeterEtTw(true,3))
-        et_turn_four_opp_vp.addTextChangedListener(MissionMeterEtTw(false, 3))
-        et_turn_five_my_vp.addTextChangedListener(MissionMeterEtTw(true,4))
-        et_turn_five_opp_vp.addTextChangedListener(MissionMeterEtTw(false, 4))
-        et_turn_six_my_vp.addTextChangedListener(MissionMeterEtTw(true,5))
-        et_turn_six_opp_vp.addTextChangedListener(MissionMeterEtTw(false, 5))
-        et_turn_seven_my_vp.addTextChangedListener(MissionMeterEtTw(true,6))
-        et_turn_seven_opp_vp.addTextChangedListener(MissionMeterEtTw(false, 6))
-    }
-
-    private fun setListenersToCB() {
-        cb_my_fb.setOnClickListener {
-            if (cb_my_fb.isChecked)
-                GamePoints.myFb = 1
-            else
-                GamePoints.myFb = 0
-        }
-
-        cb_opp_fb.setOnClickListener {
-            if (cb_opp_fb.isChecked)
-                GamePoints.oppFb = 1
-            else
-                GamePoints.oppFb = 0
-        }
-
-        cb_my_wk.setOnClickListener {
-            if (cb_my_wk.isChecked)
-                GamePoints.myWk = 1
-            else
-                GamePoints.myWk = 0
-        }
-
-        cb_opp_wk.setOnClickListener {
-            if (cb_opp_wk.isChecked)
-                GamePoints.oppWk = 1
-            else
-                GamePoints.oppWk = 0
-        }
-
-        cb_my_bl.setOnClickListener {
-            if (cb_my_bl.isChecked)
-                GamePoints.myBl = 1
-            else
-                GamePoints.myBl = 0
-        }
-
-        cb_opp_bl.setOnClickListener {
-            if (cb_opp_bl.isChecked)
-                GamePoints.oppBl = 1
-            else
-                GamePoints.oppBl = 0
-        }
-
-//        cb_opp_fb.setOnClickListener {
-//            val sharedPref = getPreferences(Context.MODE_PRIVATE)
-//            with(sharedPref.edit()) {
-//                if (cb_my_fb.isChecked)
-//                    putInt("oppFb", 1)
-//                else
-//                    putInt("oppFb", 0)
-//                apply()
-//            }
-//        }
-//
-//        cb_my_wk.setOnClickListener {
-//            val sharedPref = getPreferences(Context.MODE_PRIVATE)
-//            with(sharedPref.edit()) {
-//                if (cb_my_fb.isChecked)
-//                    putInt("myWk", 1)
-//                else
-//                    putInt("myWk", 0)
-//                apply()
-//            }
-//        }
-//
-//        cb_opp_wk.setOnClickListener {
-//            val sharedPref = getPreferences(Context.MODE_PRIVATE)
-//            with(sharedPref.edit()) {
-//                if (cb_my_fb.isChecked)
-//                    putInt("oppWk", 1)
-//                else
-//                    putInt("oppWk", 0)
-//                apply()
-//            }
-//        }
-//
-//        cb_my_bl.setOnClickListener {
-//            val sharedPref = getPreferences(Context.MODE_PRIVATE)
-//            with(sharedPref.edit()) {
-//                if (cb_my_fb.isChecked)
-//                    putInt("myBl", 1)
-//                else
-//                    putInt("myBl", 0)
-//                apply()
-//            }
-//        }
-//
-//        cb_opp_bl.setOnClickListener {
-//            val sharedPref = getPreferences(Context.MODE_PRIVATE)
-//            with(sharedPref.edit()) {
-//                if (cb_my_fb.isChecked)
-//                    putInt("oppBl", 1)
-//                else
-//                    putInt("oppBl", 0)
-//                apply()
-//            }
-//        }
-    }
 
     private fun getNameCorrectTextWatcher(elem: EditText): TextWatcher {
         return object: TextWatcher {

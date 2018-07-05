@@ -1,17 +1,20 @@
 package com.test.kolesnikovvv.myapplication
 
 import android.content.Context
+import com.test.kolesnikovvv.myapplication.entity.SecondaryMissionVp
+import com.test.kolesnikovvv.myapplication.entity.TurnVp
 
 interface MissionMeterContract {
     interface View {
         fun showFullResultDialog(result: String)
         fun showSendResultDialog(myName: String, result: String)
         fun showResetDialog()
-        fun setDataToView(myPoints: Array<String>, oppPoints: Array<String>, cbStatus: Array<Boolean>)
+        fun setDataToView(etData: ArrayList<TurnVp>, secMissionsStatus: ArrayList<SecondaryMissionVp>)
     }
 
     interface Presenter {
         //User actions
+        fun secMissionCbClicked(item: SecondaryMissionVp)
         fun resetClicked()
         fun getFullResultClicked()
         fun sendResultClicked()

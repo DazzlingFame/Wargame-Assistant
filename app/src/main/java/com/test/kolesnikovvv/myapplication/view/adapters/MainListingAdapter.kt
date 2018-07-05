@@ -13,7 +13,7 @@ class MainListingAdapter(private val myDataset: ArrayList<Unit>, private val cli
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainListViewHolder {
 
-        val element: View = LayoutInflater.from(parent.context).inflate(R.layout.element_main_listing, parent, false)
+        val element: View = LayoutInflater.from(parent.context).inflate(R.layout.item_main_listing, parent, false)
 
         return MainListViewHolder(element)
     }

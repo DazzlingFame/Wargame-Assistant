@@ -1,18 +1,15 @@
 package com.test.kolesnikovvv.myapplication.entity
 
 class GamePoints {
-
     companion object {
         var myName = ""
         var oppName = ""
-        var myFb = 0
-        var oppFb = 0
-        var myWk = 0
-        var oppWk = 0
-        var myBl = 0
-        var oppBl = 0
+
         var myTurnVp: Array<String> = arrayOf("","","","","","","")
         var oppTurnVp: Array<String> = arrayOf("","","","","","","")
+
+        var mySecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
+        var oppSecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
 
         fun parseFromStringToClass(data: String) {
             val myResult = data.substring(0, data.indexOf(";"))
@@ -39,15 +36,29 @@ class GamePoints {
             return resultString
         }
 
+        fun parseToTurnVpArrayList(): ArrayList<TurnVp> {
+            val turnArray: ArrayList<TurnVp> = arrayListOf()
+            for (index in 0..6) {
+                turnArray.add(TurnVp(index + 1, myTurnVp[index], oppTurnVp[index]))
+            }
+
+            return turnArray
+        }
+
+        fun parseToSecMissionsArrayList(): ArrayList<SecondaryMissionVp> {
+            val secMissionsArray: ArrayList<SecondaryMissionVp> = arrayListOf()
+            secMissionsArray.add(SecondaryMissionVp(0, "First blood", GamePoints.mySecVp[0] == 1, GamePoints.oppSecVp[0] == 1, true))
+            secMissionsArray.add(SecondaryMissionVp(1, "Slay the Warlord", GamePoints.mySecVp[1] == 1, GamePoints.oppSecVp[1] == 1, true))
+            secMissionsArray.add(SecondaryMissionVp(2, "Behind enemy lines", GamePoints.mySecVp[2] == 1, GamePoints.oppSecVp[2] == 1, true))
+
+            return secMissionsArray
+        }
+
         fun reset() {
-            myFb = 0
-            oppFb = 0
-            myWk = 0
-            oppWk = 0
-            myBl = 0
-            oppBl = 0
             myTurnVp = arrayOf("","","","","","","")
             oppTurnVp = arrayOf("","","","","","","")
+            mySecVp = arrayListOf(0, 0, 0)
+            oppSecVp = arrayListOf(0, 0, 0)
         }
 
         fun generateFullResult(): String {
@@ -66,14 +77,14 @@ class GamePoints {
                 if (i != "")
                     myTotalVp += i.toInt()
             }
-            myTotalVp += myFb + myWk + myBl
+            myTotalVp += mySecVp[0] + mySecVp[1] + mySecVp[2]
 
             var oppTotalVp = 0
             for (i in oppTurnVp) {
                 if (i != "")
                     oppTotalVp += i.toInt()
             }
-            oppTotalVp += oppFb + oppWk + oppBl
+            oppTotalVp += oppSecVp[0] + oppSecVp[1] + oppSecVp[2]
 
             val vpDifference = when {
                 myTotalVp - oppTotalVp > 20 -> 20
@@ -85,10 +96,6 @@ class GamePoints {
             return mapOf("myTotalVp" to myTotalVp,
                     "oppTotalVp" to oppTotalVp,
                     "totalResult" to totalResult)
-        }
-
-        fun getCbArray(): Array<Boolean> {
-            return  arrayOf(GamePoints.myFb == 1, GamePoints.oppFb == 1, GamePoints.myWk == 1, GamePoints.oppWk == 1, GamePoints.myBl == 1, GamePoints.oppBl == 1)
         }
 
     }

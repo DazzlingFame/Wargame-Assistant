@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat.startActivity
 import android.widget.Toast
 import com.test.kolesnikovvv.myapplication.MissionMeterContract
 import com.test.kolesnikovvv.myapplication.entity.GamePoints
+import com.test.kolesnikovvv.myapplication.entity.SecondaryMissionVp
 import com.test.kolesnikovvv.myapplication.interactor.MissionMeterInteractor
 
 class MissionMeterPresenter(private var view: MissionMeterContract.View?, private var context: Context): MissionMeterContract.Presenter {
@@ -15,7 +16,11 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
 
     override fun onViewCreated() {
         interactor?.updateClassFromPreferences(context)
-        view?.setDataToView(GamePoints.myTurnVp, GamePoints.oppTurnVp, GamePoints.getCbArray())
+
+        val turnVpArrayList = GamePoints.parseToTurnVpArrayList()
+        val secMissionArrayList = GamePoints.parseToSecMissionsArrayList()
+
+        view?.setDataToView(turnVpArrayList, secMissionArrayList)
     }
 
     override fun onDestroy() {
@@ -29,7 +34,7 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
 
     override fun resetClicked() {
         GamePoints.reset()
-        view?.setDataToView(GamePoints.myTurnVp, GamePoints.oppTurnVp, GamePoints.getCbArray())
+        view?.setDataToView(GamePoints.parseToTurnVpArrayList(), GamePoints.parseToSecMissionsArrayList())
     }
 
     override fun getFullResultClicked() {
@@ -38,6 +43,23 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
 
     override fun sendResultClicked() {
         view?.showSendResultDialog(GamePoints.myName, GamePoints.generateShortResult())
+    }
+
+    override fun secMissionCbClicked(item: SecondaryMissionVp) {
+        if (item.my) {
+            if (GamePoints.mySecVp[item.missionIndex] == 1) {
+                GamePoints.mySecVp[item.missionIndex] = 0
+            }
+            else
+                GamePoints.mySecVp[item.missionIndex] = 1
+            }
+        else {
+            if (GamePoints.oppSecVp[item.missionIndex] == 1) {
+                GamePoints.oppSecVp[item.missionIndex] = 0
+            }
+            else
+                GamePoints.oppSecVp[item.missionIndex] = 1
+        }
     }
 
     override fun routResultOut(text: String) {
