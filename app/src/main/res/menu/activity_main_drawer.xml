@@ -8,12 +8,12 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_necrons"
-                    android:icon="@drawable/ic_menu_gallery"
-                    android:title="@string/necrons" />
+                    android:icon="@drawable/ic_menu_scroll"
+                    android:title="@string/necrons_title" />
                 <item
                     android:id="@+id/nav_admechs"
-                    android:icon="@drawable/ic_menu_gallery"
-                    android:title="@string/adeptus_mechanicus" />
+                    android:icon="@drawable/ic_menu_scroll"
+                    android:title="@string/adeptus_mechanicus_title" />
             </group>
         </menu>
     </item>
@@ -22,8 +22,8 @@
         <menu>
             <item
                 android:id="@+id/nav_vp_tracker"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="@string/victory_points_tracker" />
+                android:icon="@drawable/ic_menu_vp"
+                android:title="@string/victory_points_tracker_title" />
         </menu>
     </item>
 

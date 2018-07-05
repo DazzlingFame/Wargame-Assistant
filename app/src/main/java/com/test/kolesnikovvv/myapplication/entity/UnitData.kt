@@ -65,7 +65,7 @@ data class UnitData (
                         "weapons",
                         "bigdata")
         ),
-        val adeptusMechanicus: ArrayList<Unit> = arrayListOf(
+        val admechs: ArrayList<Unit> = arrayListOf(
                 Unit("Skitarii",
                         "stats",
                         R.drawable.necron_cryptek,

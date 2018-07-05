@@ -25,13 +25,13 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         with(sharedPref.edit()) {
             putString("gameData", com.test.kolesnikovvv.myapplication.entity.GamePoints.parseEtResultFromClassToString())
-            putInt("myFb", com.test.kolesnikovvv.myapplication.entity.GamePoints.myFb)
-            putInt("oppFb", com.test.kolesnikovvv.myapplication.entity.GamePoints.oppFb)
-            putInt("myWk", com.test.kolesnikovvv.myapplication.entity.GamePoints.myWk)
-            putInt("oppWk", com.test.kolesnikovvv.myapplication.entity.GamePoints.oppWk)
-            putInt("myBl", com.test.kolesnikovvv.myapplication.entity.GamePoints.myBl)
-            putInt("oppBl", com.test.kolesnikovvv.myapplication.entity.GamePoints.oppBl)
-            putString("myName", com.test.kolesnikovvv.myapplication.entity.GamePoints.myName)
+            putInt("myFb", GamePoints.myFb)
+            putInt("oppFb", GamePoints.oppFb)
+            putInt("myWk", GamePoints.myWk)
+            putInt("oppWk", GamePoints.oppWk)
+            putInt("myBl", GamePoints.myBl)
+            putInt("oppBl", GamePoints.oppBl)
+            putString("myName", GamePoints.myName)
             apply()
         }
     }

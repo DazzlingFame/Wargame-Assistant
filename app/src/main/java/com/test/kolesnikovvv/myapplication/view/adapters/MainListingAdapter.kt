@@ -20,9 +20,7 @@ class MainListingAdapter(private val myDataset: ArrayList<Unit>, private val cli
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: MainListViewHolder, position: Int) {
-        holder.name.text = myDataset[position].name
-        holder.stats.text = myDataset[position].stats
-        holder.img.setImageResource(myDataset[position].image)
+        holder.bind(myDataset[position], clickListener)
     }
 
     override fun getItemCount() = myDataset.size

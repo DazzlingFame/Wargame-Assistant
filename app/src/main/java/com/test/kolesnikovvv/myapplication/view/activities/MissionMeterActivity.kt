@@ -64,7 +64,6 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
         setListenersToCB()
 
         presenter?.onViewCreated()
-
     }
 
     override fun onStop() {
