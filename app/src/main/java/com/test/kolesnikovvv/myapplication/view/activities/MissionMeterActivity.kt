@@ -8,7 +8,6 @@ import com.test.kolesnikovvv.myapplication.entity.GamePoints
 import kotlinx.android.synthetic.main.activity_mission_meter.*
 import android.content.res.ColorStateList
 import android.support.v4.view.ViewCompat
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
@@ -21,7 +20,6 @@ import com.test.kolesnikovvv.myapplication.entity.SecondaryMissionVp
 import com.test.kolesnikovvv.myapplication.entity.TurnVp
 import com.test.kolesnikovvv.myapplication.presenter.MissionMeterPresenter
 import com.test.kolesnikovvv.myapplication.view.adapters.SecondaryMissionsAdapter
-import com.test.kolesnikovvv.myapplication.view.adapters.TurnVpAdapter
 
 /**
  * Логика сохранения данных
@@ -41,13 +39,7 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
 
     private var presenter: MissionMeterContract.Presenter? = null
     private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar)}
-    private lateinit var turnVpRecyclerView: RecyclerView
-    private lateinit var turnVpViewAdapter: RecyclerView.Adapter<*>
-    private lateinit var turnVpViewManager: RecyclerView.LayoutManager
-
-    private lateinit var secMissionRecyclerView: RecyclerView
-    private lateinit var secMissionViewAdapter:RecyclerView.Adapter<*>
-    private lateinit var secMissionViewManager: RecyclerView.LayoutManager
+    private lateinit var recyclerView: RecyclerView
 
     private lateinit var myNameEt: EditText
     private lateinit var oppNameEt: EditText
@@ -98,7 +90,7 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
     }
 
     override fun showSendResultDialog(myName: String, result: String) {
-        val dialog: AlertDialog = createDialog(myName, result)
+        val dialog: AlertDialog = createSendResultDialog(myName, result)
         dialog.show()
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
@@ -109,25 +101,24 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
                     GamePoints.myName = myNameEt.text.toString()
                     GamePoints.oppName = oppNameEt.text.toString()
                     dialog.dismiss()
-
                     presenter?.routResultOut(GamePoints.generateShortResult())
                 }
             }
         }
     }
 
-    fun createDialog(myName: String, result: String): AlertDialog {
+    override fun createSendResultDialog(myName: String, result: String): AlertDialog {
         val inflater = LayoutInflater.from(this).inflate(R.layout.share_game_result_dialog, null)
         val builder = AlertDialog.Builder(this)
 
         builder.setTitle("Поделиться результатами")
         builder.setView(inflater)
 
-        myNameEt = inflater.findViewById<EditText>(R.id.et_my_name)
+        myNameEt = inflater.findViewById(R.id.et_my_name)
         myNameEt.addTextChangedListener(getNameCorrectTextWatcher(myNameEt))
         myNameEt.setText(myName)
 
-        oppNameEt = inflater.findViewById<EditText>(R.id.et_opp_name)
+        oppNameEt = inflater.findViewById(R.id.et_opp_name)
         oppNameEt.addTextChangedListener(getNameCorrectTextWatcher(oppNameEt))
 
         builder
@@ -153,25 +144,16 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
     }
 
     override fun setDataToView(etData: ArrayList<TurnVp>, secMissionsStatus: ArrayList<SecondaryMissionVp>) {
-//        turnVpViewManager = CustomLayoutManager(this)
+        val viewAdapter = SecondaryMissionsAdapter()
+        val myLayoutManager = LinearLayoutManager(this)
 
-        turnVpViewManager = LinearLayoutManager(this)
-        secMissionViewManager = LinearLayoutManager(this)
+        viewAdapter.setData(secMissionsStatus)
+        viewAdapter.addItems(etData)
 
-        turnVpViewAdapter = TurnVpAdapter(etData)
-        turnVpRecyclerView = findViewById<RecyclerView>(R.id.rv_mission_meter).apply {
+        recyclerView = findViewById<RecyclerView>(R.id.rv_mission_meter).apply {
             setHasFixedSize(true)
-            layoutManager = turnVpViewManager
-            adapter = turnVpViewAdapter
-            itemAnimator = DefaultItemAnimator()
-        }
-
-        secMissionViewAdapter = SecondaryMissionsAdapter(secMissionsStatus) { item: SecondaryMissionVp -> presenter?.secMissionCbClicked(item) }
-        secMissionRecyclerView = findViewById<RecyclerView>(R.id.rv_sec_missions).apply {
-            setHasFixedSize(true)
-            layoutManager = secMissionViewManager
-            adapter = secMissionViewAdapter
-            itemAnimator = DefaultItemAnimator()
+            layoutManager = myLayoutManager
+            adapter = viewAdapter
         }
     }
 
@@ -190,19 +172,6 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
             override fun afterTextChanged(s: Editable) {
                 ViewCompat.setBackgroundTintList(elem, ColorStateList.valueOf(getColor(R.color.colorAccent)))
             }
-        }
-    }
-
-    inner class CustomLayoutManager(context: Context) : LinearLayoutManager(context) {
-        private var isScrollEnabled = false
-
-        fun setScrollEnabled(flag: Boolean) {
-            this.isScrollEnabled = flag
-        }
-
-        override fun canScrollVertically(): Boolean {
-            //Similarly you can customize "canScrollHorizontally()" for managing horizontal scroll
-            return isScrollEnabled && super.canScrollVertically()
         }
     }
 }

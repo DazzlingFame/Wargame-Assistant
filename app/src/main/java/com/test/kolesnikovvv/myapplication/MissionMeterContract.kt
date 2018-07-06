@@ -1,6 +1,7 @@
 package com.test.kolesnikovvv.myapplication
 
 import android.content.Context
+import android.support.v7.app.AlertDialog
 import com.test.kolesnikovvv.myapplication.entity.SecondaryMissionVp
 import com.test.kolesnikovvv.myapplication.entity.TurnVp
 
@@ -9,6 +10,7 @@ interface MissionMeterContract {
         fun showFullResultDialog(result: String)
         fun showSendResultDialog(myName: String, result: String)
         fun showResetDialog()
+        fun createSendResultDialog(myName: String, result: String): AlertDialog
         fun setDataToView(etData: ArrayList<TurnVp>, secMissionsStatus: ArrayList<SecondaryMissionVp>)
     }
 

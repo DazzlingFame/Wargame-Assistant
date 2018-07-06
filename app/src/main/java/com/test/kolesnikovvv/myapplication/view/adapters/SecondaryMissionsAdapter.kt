@@ -4,28 +4,125 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
 import com.test.kolesnikovvv.myapplication.R
+import com.test.kolesnikovvv.myapplication.entity.GamePoints
+import com.test.kolesnikovvv.myapplication.entity.MissionMeterElement
 import com.test.kolesnikovvv.myapplication.entity.SecondaryMissionVp
-import com.test.kolesnikovvv.myapplication.view.viewHolders.SecondaryMissionsViewHolder
+import com.test.kolesnikovvv.myapplication.entity.TurnVp
+import com.test.kolesnikovvv.myapplication.textWatchers.MissionMeterEtTw
 
-class SecondaryMissionsAdapter (private val myDataset: ArrayList<SecondaryMissionVp>, private val clickListener: (SecondaryMissionVp) -> kotlin.Unit) : RecyclerView.Adapter<SecondaryMissionsViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SecondaryMissionsViewHolder {
+class SecondaryMissionsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        val element: View = LayoutInflater.from(parent.context).inflate(R.layout.item_sec_mission_vp, parent, false)
+    private val TYPE_SEC_MISSION: Int = 0
+    private val TYPE_VP_TURN    : Int = 1
+    private var itemList: ArrayList<MissionMeterElement> = arrayListOf()
 
-        return SecondaryMissionsViewHolder(element)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        when (viewType) {
+            TYPE_SEC_MISSION -> {
+                val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_sec_mission_vp, parent, false)
+                return SecondaryMissionsViewHolder(view)
+            }
+            TYPE_VP_TURN -> {
+                val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_turn_vp, parent, false)
+                return TurnVpViewHolder(view)
+            }
+        }
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_sec_mission_vp, parent, false)
+        return SecondaryMissionsViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(holder: SecondaryMissionsViewHolder, position: Int) {
-        holder.bind(myDataset[position], clickListener)
+    override fun getItemCount(): Int {
+        return itemList.size
     }
 
-    override fun getItemCount() = myDataset.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val element: MissionMeterElement? = getItem(position)
+        val type: Int = getItemViewType(position)
 
-    override fun onBindViewHolder(holder: SecondaryMissionsViewHolder, position: Int, payloads: MutableList<Any>) {
-//        super.onBindViewHolder(holder, position, payloads)
-        holder.bind(myDataset[position], clickListener)
+        when(type) {
+            TYPE_SEC_MISSION    -> {
+                bindSecMissionHolder(holder as SecondaryMissionsViewHolder, element as SecondaryMissionVp)
+            }
+            TYPE_VP_TURN        -> {
+                bindVpTurnHolder(holder as TurnVpViewHolder, element as TurnVp)
+            }
+        }
+    }
+
+    private fun bindSecMissionHolder(holder: SecondaryMissionsViewHolder, element: SecondaryMissionVp) {
+        holder.missionName.text = element.missionName
+        holder.myStatus.isChecked = element.myStatus
+        holder.oppStatus.isChecked = element.oppStatus
+
+        holder.myStatus.setOnClickListener {
+            if (GamePoints.mySecVp[element.missionIndex] == 1) {
+                GamePoints.mySecVp[element.missionIndex] = 0
+            }
+            else
+                GamePoints.mySecVp[element.missionIndex] = 1
+
+
+        }
+
+        holder.oppStatus.setOnClickListener {
+            if (GamePoints.oppSecVp[element.missionIndex] == 1) {
+                GamePoints.oppSecVp[element.missionIndex] = 0
+            }
+            else
+                GamePoints.oppSecVp[element.missionIndex] = 1
+        }
+    }
+
+    private fun bindVpTurnHolder(holder: TurnVpViewHolder, element: TurnVp) {
+        holder.name.text = "Ход " + (element.turnIndex + 1).toString()
+        holder.myVp.setText(element.myVp)
+        holder.oppVp.setText(element.oppVp)
+
+        holder.myVp.addTextChangedListener(MissionMeterEtTw(true, element.turnIndex))
+        holder.oppVp.addTextChangedListener(MissionMeterEtTw(false, element.turnIndex))
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val element: MissionMeterElement? = getItem(position)
+        when (element?.type) {
+            MissionMeterElement.Type.SEC_MISSION -> return TYPE_SEC_MISSION
+            MissionMeterElement.Type.TURN_VP -> return TYPE_VP_TURN
+        }
+        return TYPE_SEC_MISSION
+    }
+
+    fun getItem(position: Int): MissionMeterElement? {
+        if (position < 0 || position >= itemList.size)
+            return null
+
+        return itemList[position]
+    }
+
+    fun setData(elements: List<MissionMeterElement>) {
+        itemList.clear()
+        itemList.addAll(elements)
+    }
+
+    fun addItems(elements: List<MissionMeterElement>) {
+        itemList.addAll(elements)
+    }
+
+
+    class TurnVpViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val name: TextView = itemView.findViewById(R.id.tv_turn) as TextView
+        val myVp: EditText = itemView.findViewById(R.id.et_my_vp)
+        val oppVp: EditText = itemView.findViewById(R.id.et_opp_vp)
+    }
+
+    class SecondaryMissionsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val missionName: TextView = itemView.findViewById(R.id.sec_mission_name)
+        val myStatus: CheckBox = itemView.findViewById(R.id.cb_my_status)
+        val oppStatus: CheckBox = itemView.findViewById(R.id.cb_opp_status)
     }
 }
