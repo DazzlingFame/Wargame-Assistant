@@ -30,7 +30,8 @@
             android:label="@string/title_activity_mission_meter"
             android:parentActivityName=".view.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.test.kolesnikovvv.myapplication.view.activities.MainActivity" />

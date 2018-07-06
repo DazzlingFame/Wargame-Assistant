@@ -14,7 +14,7 @@ class TurnVpViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val oppVp: EditText = itemView.findViewById(R.id.et_opp_vp)
 
     fun bind(turnData: TurnVp) {
-        name.text = "Ход " + turnData.turnIndex.toString()
+        name.text = "Ход " + (turnData.turnIndex + 1).toString()
         myVp.setText(turnData.myVp)
         oppVp.setText(turnData.oppVp)
 

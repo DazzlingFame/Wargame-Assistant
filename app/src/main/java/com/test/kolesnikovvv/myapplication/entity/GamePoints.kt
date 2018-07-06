@@ -39,7 +39,7 @@ class GamePoints {
         fun parseToTurnVpArrayList(): ArrayList<TurnVp> {
             val turnArray: ArrayList<TurnVp> = arrayListOf()
             for (index in 0..6) {
-                turnArray.add(TurnVp(index + 1, myTurnVp[index], oppTurnVp[index]))
+                turnArray.add(TurnVp(index, myTurnVp[index], oppTurnVp[index]))
             }
 
             return turnArray

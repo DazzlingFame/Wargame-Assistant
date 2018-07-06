@@ -1,5 +1,6 @@
 package com.test.kolesnikovvv.myapplication.view.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import com.test.kolesnikovvv.myapplication.R
@@ -48,6 +49,9 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
     private lateinit var secMissionViewAdapter:RecyclerView.Adapter<*>
     private lateinit var secMissionViewManager: RecyclerView.LayoutManager
 
+    private lateinit var myNameEt: EditText
+    private lateinit var oppNameEt: EditText
+
 
     override fun getToolbarInstance(): Toolbar? = toolbar
 
@@ -94,23 +98,7 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
     }
 
     override fun showSendResultDialog(myName: String, result: String) {
-        val inflater = LayoutInflater.from(this).inflate(R.layout.share_game_result_dialog, null)
-        val builder = AlertDialog.Builder(this)
-
-        builder.setTitle("Поделиться результатами")
-        builder.setView(inflater)
-
-        val myNameEt = inflater.findViewById<EditText>(R.id.et_my_name)
-        myNameEt.addTextChangedListener(getNameCorrectTextWatcher(myNameEt))
-        myNameEt.setText(myName)
-
-        val oppNameEt = inflater.findViewById<EditText>(R.id.et_opp_name)
-        oppNameEt.addTextChangedListener(getNameCorrectTextWatcher(oppNameEt))
-
-        builder
-                .setPositiveButton("Отправить") { _, _ -> }
-                .setNegativeButton("Отмена") { _, _ -> }
-        val dialog: AlertDialog = builder.create()
+        val dialog: AlertDialog = createDialog(myName, result)
         dialog.show()
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
@@ -128,6 +116,27 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
         }
     }
 
+    fun createDialog(myName: String, result: String): AlertDialog {
+        val inflater = LayoutInflater.from(this).inflate(R.layout.share_game_result_dialog, null)
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("Поделиться результатами")
+        builder.setView(inflater)
+
+        myNameEt = inflater.findViewById<EditText>(R.id.et_my_name)
+        myNameEt.addTextChangedListener(getNameCorrectTextWatcher(myNameEt))
+        myNameEt.setText(myName)
+
+        oppNameEt = inflater.findViewById<EditText>(R.id.et_opp_name)
+        oppNameEt.addTextChangedListener(getNameCorrectTextWatcher(oppNameEt))
+
+        builder
+                .setPositiveButton("Отправить") { _, _ -> }
+                .setNegativeButton("Отмена") { _, _ -> }
+        val dialog: AlertDialog = builder.create()
+        return dialog
+    }
+
     override fun showResetDialog() {
         val builder = AlertDialog.Builder(this@MissionMeterActivity)
         builder.setTitle("Сбросить значения?")
@@ -136,12 +145,16 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
             presenter?.resetClicked()
         }
 
-        builder.setNegativeButton("Нет") { _, _ -> }
+        builder.setNegativeButton("Нет") {dialog, which ->
+            dialog.dismiss()
+        }
 
         builder.create().show()
     }
 
     override fun setDataToView(etData: ArrayList<TurnVp>, secMissionsStatus: ArrayList<SecondaryMissionVp>) {
+//        turnVpViewManager = CustomLayoutManager(this)
+
         turnVpViewManager = LinearLayoutManager(this)
         secMissionViewManager = LinearLayoutManager(this)
 
@@ -177,6 +190,19 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
             override fun afterTextChanged(s: Editable) {
                 ViewCompat.setBackgroundTintList(elem, ColorStateList.valueOf(getColor(R.color.colorAccent)))
             }
+        }
+    }
+
+    inner class CustomLayoutManager(context: Context) : LinearLayoutManager(context) {
+        private var isScrollEnabled = false
+
+        fun setScrollEnabled(flag: Boolean) {
+            this.isScrollEnabled = flag
+        }
+
+        override fun canScrollVertically(): Boolean {
+            //Similarly you can customize "canScrollHorizontally()" for managing horizontal scroll
+            return isScrollEnabled && super.canScrollVertically()
         }
     }
 }
