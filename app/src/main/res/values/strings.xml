@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">WarGame Assistant</string>
 
+    //Screen titles
     <string name="title_activity_main">WarGame Assistant</string>
     <string name="title_activity_mission_meter">MissionMeter</string>
 
@@ -20,23 +21,22 @@
     <string name="necrons_title">Necrons</string>
     <string name="factions">Factions</string>
 
-    <string name="turn_name">Ход</string>
-    <string name="turn_one_name">Ход 1</string>
-    <string name="turn_two_name">Ход 2</string>
-    <string name="turn_three_name">Ход 3</string>
-    <string name="turn_four_name">Ход 4</string>
-    <string name="turn_five_name">Ход 5</string>
-    <string name="turn_six_name">Ход 6</string>
-    <string name="turn_seven_name">Ход 7</string>
 
+
+    //MissionMeter
     <string name="my_army_name">Я</string>
     <string name="opponent_army_name">Противник</string>
-
     <string name="victory_points_name">Победные очки</string>
     <string name="first_blood_name">First blood</string>
     <string name="warlord_kill_name">Slay the Warlord</string>
     <string name="behind_enemy_lines_name">Behind enemy lines</string>
+    <string name="turn_name">Ход</string>
     <string name="default_vp">0</string>
     <string name="victory_points_tracker_title">Victory points tracker</string>
     <string name="result_name">Результат</string>
+
+    //Shared preferences
+    <string name="last_faction_key">lastFaction</string>
+    <string name="necrons_name">necrons</string>
+    <string name="admechs_name">admechs</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivity
 import android.widget.Toast
 import com.test.kolesnikovvv.myapplication.MissionMeterContract
+import com.test.kolesnikovvv.myapplication.R
 import com.test.kolesnikovvv.myapplication.entity.GamePoints
 import com.test.kolesnikovvv.myapplication.entity.SecondaryMissionVp
 import com.test.kolesnikovvv.myapplication.interactor.MissionMeterInteractor
@@ -13,12 +14,17 @@ import com.test.kolesnikovvv.myapplication.interactor.MissionMeterInteractor
 class MissionMeterPresenter(private var view: MissionMeterContract.View?, private var context: Context): MissionMeterContract.Presenter {
 
     private var interactor: MissionMeterContract.Interactor? = MissionMeterInteractor()
+    private var missionNamesArray = arrayListOf<String>(
+            context.getString(R.string.first_blood_name),
+            context.getString(R.string.warlord_kill_name),
+            context.getString(R.string.behind_enemy_lines_name)
+    )
 
     override fun onViewCreated() {
         interactor?.updateClassFromPreferences(context)
 
         val turnVpArrayList = GamePoints.parseToTurnVpArrayList()
-        val secMissionArrayList = GamePoints.parseToSecMissionsArrayList()
+        val secMissionArrayList = GamePoints.parseToSecMissionsArrayList(missionNamesArray)
 
         view?.setDataToView(turnVpArrayList, secMissionArrayList)
     }
@@ -34,7 +40,7 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
 
     override fun resetClicked() {
         GamePoints.reset()
-        view?.setDataToView(GamePoints.parseToTurnVpArrayList(), GamePoints.parseToSecMissionsArrayList())
+        view?.setDataToView(GamePoints.parseToTurnVpArrayList(), GamePoints.parseToSecMissionsArrayList(missionNamesArray))
     }
 
     override fun getFullResultClicked() {

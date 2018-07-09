@@ -8,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.test.kolesnikovvv.myapplication.MainContract
 import com.test.kolesnikovvv.myapplication.R
 import com.test.kolesnikovvv.myapplication.view.adapters.MainListingAdapter
@@ -32,9 +35,11 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
 
         presenter = MainPresenter(this, this)
 
-        nav_view.setNavigationItemSelectedListener(this)
+        findViewById<NavigationView>(R.id.nav_view).setNavigationItemSelectedListener(this)
 
         presenter?.onViewCreated()
+
+
     }
 
     override fun onDestroy() {

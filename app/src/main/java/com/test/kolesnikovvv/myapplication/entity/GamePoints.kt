@@ -1,6 +1,13 @@
 package com.test.kolesnikovvv.myapplication.entity
 
 class GamePoints {
+
+    enum class totalVpTypes {
+        MY_TOTAL_VP,
+        OPP_TOTAL_VP,
+        TOTAL_RESULT
+    }
+
     companion object {
         var myName = ""
         var oppName = ""
@@ -11,30 +18,6 @@ class GamePoints {
         var mySecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
         var oppSecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
 
-        fun parseFromStringToClass(data: String) {
-            val myResult = data.substring(0, data.indexOf(";"))
-            myTurnVp = myResult.split(",").toTypedArray()
-
-            val oppResult = data.substring(data.indexOf(";") + 1, data.length)
-            oppTurnVp = oppResult.split(",").toTypedArray()
-        }
-
-        fun parseEtResultFromClassToString(): String {
-            var resultString = ""
-            for (i in 0 until myTurnVp.size - 1) {
-                resultString = resultString + myTurnVp[i] + ","
-            }
-            resultString += myTurnVp[myTurnVp.size - 1]
-
-            resultString = "$resultString;"
-
-            for (i in 0 until (oppTurnVp.size - 1)) {
-                resultString = resultString + oppTurnVp[i] + ","
-            }
-            resultString += oppTurnVp[oppTurnVp.size - 1]
-
-            return resultString
-        }
 
         fun parseToTurnVpArrayList(): ArrayList<TurnVp> {
             val turnArray: ArrayList<TurnVp> = arrayListOf()
@@ -45,12 +28,11 @@ class GamePoints {
             return turnArray
         }
 
-        fun parseToSecMissionsArrayList(): ArrayList<SecondaryMissionVp> {
+        fun parseToSecMissionsArrayList(missionNameArray: ArrayList<String>): ArrayList<SecondaryMissionVp> {
             val secMissionsArray: ArrayList<SecondaryMissionVp> = arrayListOf()
-            secMissionsArray.add(SecondaryMissionVp(0, "First blood", GamePoints.mySecVp[0] == 1, GamePoints.oppSecVp[0] == 1, true))
-            secMissionsArray.add(SecondaryMissionVp(1, "Slay the Warlord", GamePoints.mySecVp[1] == 1, GamePoints.oppSecVp[1] == 1, true))
-            secMissionsArray.add(SecondaryMissionVp(2, "Behind enemy lines", GamePoints.mySecVp[2] == 1, GamePoints.oppSecVp[2] == 1, true))
-
+            for (item in missionNameArray) {
+                secMissionsArray.add(SecondaryMissionVp(missionNameArray.indexOf(item), item, GamePoints.mySecVp[missionNameArray.indexOf(item)] == 1, GamePoints.oppSecVp[missionNameArray.indexOf(item)] == 1, true))
+            }
             return secMissionsArray
         }
 
@@ -63,15 +45,15 @@ class GamePoints {
 
         fun generateFullResult(): String {
             val result = generateResult()
-            return "У вас ${result["myTotalVp"]} победных очков\nУ оппонента ${result["oppTotalVp"]} победных очков\nИтоговый счет: ${result["totalResult"]}/" + (20 - result["totalResult"]!!)
+            return "У вас ${result[totalVpTypes.MY_TOTAL_VP]} победных очков\nУ оппонента ${result[totalVpTypes.OPP_TOTAL_VP]} победных очков\nИтоговый счет: ${result[totalVpTypes.TOTAL_RESULT]}/" + (20 - result[totalVpTypes.TOTAL_RESULT]!!)
         }
 
         fun generateShortResult(): String {
             val result = generateResult()
-            return "$myName - $oppName // ${result["myTotalVp"]} - ${result["oppTotalVp"]} // ${result["totalResult"]} - " + (20 - result["totalResult"]!!)
+            return "$myName - $oppName // ${result[totalVpTypes.MY_TOTAL_VP]} - ${result[totalVpTypes.OPP_TOTAL_VP]} // ${result[totalVpTypes.TOTAL_RESULT]} - " + (20 - result[totalVpTypes.TOTAL_RESULT]!!)
         }
 
-        private fun generateResult(): Map<String, Int> {
+        private fun generateResult(): Map<totalVpTypes, Int> {
             var myTotalVp = 0
             for (i in myTurnVp) {
                 if (i != "")
@@ -93,9 +75,9 @@ class GamePoints {
             }
             val totalResult = 10 + vpDifference / 2
 
-            return mapOf("myTotalVp" to myTotalVp,
-                    "oppTotalVp" to oppTotalVp,
-                    "totalResult" to totalResult)
+            return mapOf(totalVpTypes.MY_TOTAL_VP to myTotalVp,
+                    totalVpTypes.OPP_TOTAL_VP to oppTotalVp,
+                    totalVpTypes.TOTAL_RESULT to totalResult)
         }
 
     }

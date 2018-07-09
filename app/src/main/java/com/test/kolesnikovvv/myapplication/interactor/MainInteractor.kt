@@ -3,6 +3,7 @@ package com.test.kolesnikovvv.myapplication.interactor
 import android.content.Context
 import android.preference.PreferenceManager
 import com.test.kolesnikovvv.myapplication.MainContract
+import com.test.kolesnikovvv.myapplication.R
 import com.test.kolesnikovvv.myapplication.entity.Unit
 import com.test.kolesnikovvv.myapplication.entity.UnitData
 
@@ -17,11 +18,11 @@ class MainInteractor: MainContract.Interactor {
 
     override fun getLastFaction(context: Context): Unit.Factions {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        val lastFaction = sharedPref.getString("lastFaction", "necrons")
+        val lastFaction = sharedPref.getString(context.getString(R.string.last_faction_key), context.getString(R.string.necrons_name))
 
         when(lastFaction) {
-            "necrons" -> return Unit.Factions.Necrons
-            "mechanicus" -> return Unit.Factions.Mechanicus
+            context.getString(R.string.necrons_name) -> return Unit.Factions.Necrons
+            context.getString(R.string.admechs_name) -> return Unit.Factions.Mechanicus
         }
         return Unit.Factions.Necrons
     }
@@ -29,7 +30,7 @@ class MainInteractor: MainContract.Interactor {
     override fun saveLastFaction(context: Context, factionName: String) {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         with(sharedPref.edit()) {
-            putString("lastFaction", factionName)
+            putString(context.getString(R.string.last_faction_key), factionName)
             apply()
         }
     }
