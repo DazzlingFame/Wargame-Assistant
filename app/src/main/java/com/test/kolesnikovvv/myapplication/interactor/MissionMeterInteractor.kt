@@ -17,7 +17,7 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
         val mySecMissionArray: List<String> = mySecMissionVp.split(",")
         val oppSecMissionArray: List<String> = oppSecMissionVp.split(",")
 
-        GamePoints.mySecVp[0] = mySecMissionArray[0].toInt()
+        .mySecVp[0] = mySecMissionArray[0].toInt()
         GamePoints.mySecVp[1] = mySecMissionArray[1].toInt()
         GamePoints.mySecVp[2] = mySecMissionArray[2].toInt()
 
@@ -34,11 +34,14 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
         val oppSecMissionVp: String = GamePoints.oppSecVp[0].toString() + "," + GamePoints.oppSecVp[1].toString() + "," + GamePoints.oppSecVp[2].toString()
 
         with(sharedPref.edit()) {
-            putString("gameData", parseEtResultToString())
-            putString("mySecVp", mySecMissionVp)
-            putString("oppSecVp", oppSecMissionVp)
+//            putString("gameData", parseEtResultToString())
+//            putString("mySecVp", mySecMissionVp)
+//            putString("oppSecVp", oppSecMissionVp)
+//
+//            putString("myName", GamePoints.myName)
+            putString(GamePoints.myTurnVp.)
 
-            putString("myName", GamePoints.myName)
+
             apply()
         }
     }

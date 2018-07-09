@@ -13,6 +13,11 @@ import com.test.kolesnikovvv.myapplication.interactor.MissionMeterInteractor
 
 class MissionMeterPresenter(private var view: MissionMeterContract.View?, private var context: Context): MissionMeterContract.Presenter {
 
+    private var gp = GamePoints()
+    public fun setGp(value: GamePoints) {
+        gp = value
+    }
+
     private var interactor: MissionMeterContract.Interactor? = MissionMeterInteractor()
     private var missionNamesArray = arrayListOf<String>(
             context.getString(R.string.first_blood_name),
@@ -23,8 +28,8 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
     override fun onViewCreated() {
         interactor?.updateClassFromPreferences(context)
 
-        val turnVpArrayList = GamePoints.parseToTurnVpArrayList()
-        val secMissionArrayList = GamePoints.parseToSecMissionsArrayList(missionNamesArray)
+        val turnVpArrayList = gp.parseToTurnVpArrayList()
+        val secMissionArrayList = gp.parseToSecMissionsArrayList(missionNamesArray)
 
         view?.setDataToView(turnVpArrayList, secMissionArrayList)
     }
@@ -39,32 +44,32 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
     }
 
     override fun resetClicked() {
-        GamePoints.reset()
-        view?.setDataToView(GamePoints.parseToTurnVpArrayList(), GamePoints.parseToSecMissionsArrayList(missionNamesArray))
+        gp.reset()
+        view?.setDataToView(gp.parseToTurnVpArrayList(), gp.parseToSecMissionsArrayList(missionNamesArray))
     }
 
     override fun getFullResultClicked() {
-        view?.showFullResultDialog(GamePoints.generateFullResult())
+        view?.showFullResultDialog(gp.generateFullResult())
     }
 
     override fun sendResultClicked() {
-        view?.showSendResultDialog(GamePoints.myName, GamePoints.generateShortResult())
+        view?.showSendResultDialog(gp.myName, gp.generateShortResult())
     }
 
     override fun secMissionCbClicked(item: SecondaryMissionVp) {
         if (item.my) {
-            if (GamePoints.mySecVp[item.missionIndex] == 1) {
-                GamePoints.mySecVp[item.missionIndex] = 0
+            if (gp.mySecVp[item.missionIndex] == 1) {
+                gp.mySecVp[item.missionIndex] = 0
             }
             else
-                GamePoints.mySecVp[item.missionIndex] = 1
+                gp.mySecVp[item.missionIndex] = 1
             }
         else {
-            if (GamePoints.oppSecVp[item.missionIndex] == 1) {
-                GamePoints.oppSecVp[item.missionIndex] = 0
+            if (gp.oppSecVp[item.missionIndex] == 1) {
+                gp.oppSecVp[item.missionIndex] = 0
             }
             else
-                GamePoints.oppSecVp[item.missionIndex] = 1
+                gp.oppSecVp[item.missionIndex] = 1
         }
     }
 

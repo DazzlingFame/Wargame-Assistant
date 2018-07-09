@@ -1,22 +1,69 @@
 package com.test.kolesnikovvv.myapplication.entity
 
-class GamePoints {
+import android.os.Parcel
+import android.os.Parcelable
 
-    enum class totalVpTypes {
+class GamePoints(var myName: String = "",
+                 var oppName: String = "",
+                 var myTurnVp:Array<String> = arrayOf("","","","","","",""),
+                 var oppTurnVp: Array<String> = arrayOf("","","","","","",""),
+                 var mySecVp: Array<Int> = arrayOf(0, 0, 0),
+                 var oppSecVp: ArrayList<Int> = arrayListOf(0, 0, 0)) : Parcelable {
+
+    private constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.createStringArray(),
+            parcel.createStringArray(),
+            parcel.createIntArray()
+//            parcel.readStringList(),
+//            parcel.readStringArray(),
+//            parcel.readArrayList(),
+//            parcel.readArrayList()
+            )
+
+
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(myName)
+        parcel.writeString(oppName)
+        parcel.writeArray(myTurnVp)
+        parcel.writeArray(oppTurnVp)
+        parcel.writeList(mySecVp)
+        parcel.writeList(oppSecVp)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    @JvmField
+    val CREATOR = object : Parcelable.Creator<GamePoints> {
+
+        override fun createFromParcel(parcel: Parcel): GamePoints {
+            return GamePoints(parcel)
+        }
+
+        override fun newArray(size: Int): Array<GamePoints?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+    enum class TotalVpTypes {
         MY_TOTAL_VP,
         OPP_TOTAL_VP,
         TOTAL_RESULT
     }
 
-    companion object {
-        var myName = ""
-        var oppName = ""
 
-        var myTurnVp: Array<String> = arrayOf("","","","","","","")
-        var oppTurnVp: Array<String> = arrayOf("","","","","","","")
-
-        var mySecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
-        var oppSecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
+//        var myName = ""
+//        var oppName = ""
+//
+//        var myTurnVp: Array<String> = arrayOf("","","","","","","")
+//        var oppTurnVp: Array<String> = arrayOf("","","","","","","")
+//
+//        var mySecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
+//        var oppSecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
 
 
         fun parseToTurnVpArrayList(): ArrayList<TurnVp> {
@@ -31,7 +78,7 @@ class GamePoints {
         fun parseToSecMissionsArrayList(missionNameArray: ArrayList<String>): ArrayList<SecondaryMissionVp> {
             val secMissionsArray: ArrayList<SecondaryMissionVp> = arrayListOf()
             for (item in missionNameArray) {
-                secMissionsArray.add(SecondaryMissionVp(missionNameArray.indexOf(item), item, GamePoints.mySecVp[missionNameArray.indexOf(item)] == 1, GamePoints.oppSecVp[missionNameArray.indexOf(item)] == 1, true))
+                secMissionsArray.add(SecondaryMissionVp(missionNameArray.indexOf(item), item, mySecVp[missionNameArray.indexOf(item)] == 1, oppSecVp[missionNameArray.indexOf(item)] == 1, true))
             }
             return secMissionsArray
         }
@@ -39,21 +86,21 @@ class GamePoints {
         fun reset() {
             myTurnVp = arrayOf("","","","","","","")
             oppTurnVp = arrayOf("","","","","","","")
-            mySecVp = arrayListOf(0, 0, 0)
+            mySecVp = arrayOf(0, 0, 0)
             oppSecVp = arrayListOf(0, 0, 0)
         }
 
         fun generateFullResult(): String {
             val result = generateResult()
-            return "У вас ${result[totalVpTypes.MY_TOTAL_VP]} победных очков\nУ оппонента ${result[totalVpTypes.OPP_TOTAL_VP]} победных очков\nИтоговый счет: ${result[totalVpTypes.TOTAL_RESULT]}/" + (20 - result[totalVpTypes.TOTAL_RESULT]!!)
+            return "У вас ${result[TotalVpTypes.MY_TOTAL_VP]} победных очков\nУ оппонента ${result[TotalVpTypes.OPP_TOTAL_VP]} победных очков\nИтоговый счет: ${result[TotalVpTypes.TOTAL_RESULT]}/" + (20 - result[TotalVpTypes.TOTAL_RESULT]!!)
         }
 
         fun generateShortResult(): String {
             val result = generateResult()
-            return "$myName - $oppName // ${result[totalVpTypes.MY_TOTAL_VP]} - ${result[totalVpTypes.OPP_TOTAL_VP]} // ${result[totalVpTypes.TOTAL_RESULT]} - " + (20 - result[totalVpTypes.TOTAL_RESULT]!!)
+            return "$myName - $oppName // ${result[TotalVpTypes.MY_TOTAL_VP]} - ${result[TotalVpTypes.OPP_TOTAL_VP]} // ${result[TotalVpTypes.TOTAL_RESULT]} - " + (20 - result[TotalVpTypes.TOTAL_RESULT]!!)
         }
 
-        private fun generateResult(): Map<totalVpTypes, Int> {
+        private fun generateResult(): Map<TotalVpTypes, Int> {
             var myTotalVp = 0
             for (i in myTurnVp) {
                 if (i != "")
@@ -75,10 +122,12 @@ class GamePoints {
             }
             val totalResult = 10 + vpDifference / 2
 
-            return mapOf(totalVpTypes.MY_TOTAL_VP to myTotalVp,
-                    totalVpTypes.OPP_TOTAL_VP to oppTotalVp,
-                    totalVpTypes.TOTAL_RESULT to totalResult)
+            return mapOf(TotalVpTypes.MY_TOTAL_VP to myTotalVp,
+                    TotalVpTypes.OPP_TOTAL_VP to oppTotalVp,
+                    TotalVpTypes.TOTAL_RESULT to totalResult)
         }
 
     }
+
+
 }
