@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.test.kolesnikovvv.myapplication">
+    package="com.df.kolesnikovvv.wargameassistant">
 
     <application
         android:allowBackup="true"
@@ -34,7 +34,7 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.test.kolesnikovvv.myapplication.view.activities.MainActivity" />
+                android:value="com.df.kolesnikovvv.wargameassistant.view.activities.MainActivity" />
         </activity>
     </application>
 
