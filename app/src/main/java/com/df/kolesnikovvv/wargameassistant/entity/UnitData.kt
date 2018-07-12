@@ -205,7 +205,7 @@ data class UnitData (
                                 "Phylactery: A model with a phylactery regains D3 lost wounds at the beginning of your turn, rather than 1, from their Living Metal ability.\n\n" +
                                 "Resurrection Orb: If this model has a resurrection orb, once per battle, immediately after you have made your Reanimation Protocols rolls at the beginning of the " +
                                 "turn, you can make Reanimation Protocols rolls for models from a friendly <DYNASTY> INFANTRY unit within 3\" of this model."),
-                Unit("Necron Warrior",
+                Unit("Warrior",
                         "M:5 WS:3+ BS:3+ S:4 T:4 W:1 A:1 Sv:4+ Ld:10",
                         R.drawable.necron_warrior,
                         "Gauss flayer\n" +
