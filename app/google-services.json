@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "979550295599",
+    "firebase_url": "https://wargame-assistant-bbce6.firebaseio.com",
+    "project_id": "wargame-assistant-bbce6",
+    "storage_bucket": "wargame-assistant-bbce6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979550295599:android:f72ea4358c09ed4b",
+        "android_client_info": {
+          "package_name": "com.df.kolesnikovvv.wargameassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979550295599-0pobcql2q23gj1n74h27f5qcggkd59al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGXLKlxC2tzx8lv-Hc6rI6U2VQK35pAEE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
