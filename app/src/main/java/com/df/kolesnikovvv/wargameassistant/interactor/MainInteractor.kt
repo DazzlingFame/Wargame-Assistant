@@ -16,6 +16,22 @@ class MainInteractor: MainContract.Interactor {
         }
     }
 
+    override fun getSearchedUnitList(factionName: Unit.Factions, searchText: String): ArrayList<Unit> {
+        val faction = when(factionName) {
+            Unit.Factions.Necrons -> UnitData().necrons
+            Unit.Factions.Mechanicus -> UnitData().admechs
+        }
+
+        val searchResult: ArrayList<Unit> = arrayListOf()
+
+        for (unit in faction) {
+            if (unit.name.toLowerCase().contains(searchText.toLowerCase())) {
+                searchResult.add(unit)
+            }
+        }
+        return searchResult
+    }
+
     override fun getLastFaction(context: Context): Unit.Factions {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val lastFaction = sharedPref.getString(context.getString(R.string.last_faction_key), context.getString(R.string.necrons_name))

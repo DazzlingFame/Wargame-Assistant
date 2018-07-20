@@ -15,6 +15,7 @@ interface MainContract {
         //User actions
         fun listItemClicked(item: Unit)
         fun navigationItemSelected(item: MenuItem)
+        fun searchTextChanged(text: String)
 
         //Model updates
         fun onViewCreated()
@@ -25,6 +26,7 @@ interface MainContract {
         fun getLastFaction(context: Context): Unit.Factions
         fun saveLastFaction(context: Context, factionName: String)
         fun getUnitList(factionName: Unit.Factions): ArrayList<Unit>
+        fun getSearchedUnitList(factionName: Unit.Factions, searchText: String): ArrayList<Unit>
     }
 
     interface Router {

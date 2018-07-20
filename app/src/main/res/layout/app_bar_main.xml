@@ -16,10 +16,24 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-
-
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/main_search_name"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hintGray"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/small_padding"
+                android:paddingEnd="@dimen/small_padding"
+                android:layout_marginBottom="@dimen/std_padding"
+                android:layout_marginTop="@dimen/std_padding"
+                android:layout_marginStart="@dimen/std_padding"
+                android:layout_marginEnd="@dimen/std_padding"/>
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />

@@ -35,6 +35,10 @@ class MainPresenter(private var view: MainContract.View?, private val context: C
         view?.closeDrawer()
     }
 
+    override fun searchTextChanged(text: String) {
+        view?.publishDataList(interactor!!.getSearchedUnitList(interactor!!.getLastFaction(context), text))
+    }
+
     override fun onViewCreated() {
         view?.publishDataList(interactor!!.getUnitList(interactor!!.getLastFaction(context)))
     }

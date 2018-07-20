@@ -39,4 +39,6 @@
     <string name="last_faction_key">lastFaction</string>
     <string name="necrons_name">necrons</string>
     <string name="admechs_name">admechs</string>
+    <string name="main_search_name">Поиск</string>
+    <string name="utility_name">Utility</string>
 </resources>
