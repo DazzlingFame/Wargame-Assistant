@@ -11,9 +11,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.widget.EditText
+import com.df.kolesnikovvv.wargameassistant.DrawerContract
 import com.df.kolesnikovvv.wargameassistant.MainContract
 import com.df.kolesnikovvv.wargameassistant.R
 import com.df.kolesnikovvv.wargameassistant.entity.Unit
+import com.df.kolesnikovvv.wargameassistant.presenter.DrawerPresenter
 import com.df.kolesnikovvv.wargameassistant.presenter.MainPresenter
 import com.df.kolesnikovvv.wargameassistant.view.adapters.MainListingAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +27,8 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
     override fun getToolbarInstance(): Toolbar? = toolbar
 
     private var presenter: MainContract.Presenter? = null
+    private var drawerPresenter: DrawerContract.Presenter? = null
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -40,6 +44,7 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
         etSearch.addTextChangedListener(searchTextWatcher())
 
         presenter = MainPresenter(this, this)
+        drawerPresenter = DrawerPresenter(this)
 
         findViewById<NavigationView>(R.id.nav_view).setNavigationItemSelectedListener(this)
 
@@ -74,12 +79,9 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        presenter?.navigationItemSelected(item)
-        return true
-    }
-
-    override fun closeDrawer() {
+        drawerPresenter?.navigationItemSelected(item, this)
         drawer_layout.closeDrawer(GravityCompat.START)
+        return true
     }
 
     private fun searchTextWatcher(): TextWatcher {

@@ -42,13 +42,4 @@ class MainInteractor: MainContract.Interactor {
         }
         return Unit.Factions.Necrons
     }
-
-    override fun saveLastFaction(context: Context, factionName: String) {
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        with(sharedPref.edit()) {
-            putString(context.getString(R.string.last_faction_key), factionName)
-            apply()
-        }
-    }
-
 }

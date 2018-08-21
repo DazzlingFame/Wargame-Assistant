@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat.startActivity
 import com.df.kolesnikovvv.wargameassistant.MainContract
 import com.df.kolesnikovvv.wargameassistant.entity.Unit
 import com.df.kolesnikovvv.wargameassistant.view.activities.BigCardActivity
-import com.df.kolesnikovvv.wargameassistant.view.activities.MissionMeterActivity
 
 class MainRouter: MainContract.Router {
 
@@ -17,11 +16,6 @@ class MainRouter: MainContract.Router {
         intent.putExtra("image", item.image.toString())
         intent.putExtra("weapons", item.weapons)
         intent.putExtra("bigData", item.bigData)
-        startActivity(context, intent, null)
-    }
-
-    override fun navigateToMissionMeter(context: Context) {
-        val intent = Intent(context, MissionMeterActivity::class.java)
         startActivity(context, intent, null)
     }
 }
