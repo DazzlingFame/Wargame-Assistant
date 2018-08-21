@@ -17,11 +17,11 @@ import com.df.kolesnikovvv.wargameassistant.entity.Unit
 import com.df.kolesnikovvv.wargameassistant.presenter.MainPresenter
 import com.df.kolesnikovvv.wargameassistant.view.adapters.MainListingAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
+    private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar)}
     override fun getToolbarInstance(): Toolbar? = toolbar
 
     private var presenter: MainContract.Presenter? = null
