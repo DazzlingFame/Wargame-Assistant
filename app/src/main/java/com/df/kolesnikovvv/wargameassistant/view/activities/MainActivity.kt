@@ -1,6 +1,5 @@
 package com.df.kolesnikovvv.wargameassistant.view.activities
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -11,7 +10,6 @@ import android.support.v7.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.df.kolesnikovvv.wargameassistant.MainContract
 import com.df.kolesnikovvv.wargameassistant.R
