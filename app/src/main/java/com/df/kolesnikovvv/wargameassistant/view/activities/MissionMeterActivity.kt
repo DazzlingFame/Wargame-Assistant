@@ -1,26 +1,31 @@
 package com.df.kolesnikovvv.wargameassistant.view.activities
 
-import android.content.Context
-import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import com.df.kolesnikovvv.wargameassistant.R
-import com.df.kolesnikovvv.wargameassistant.entity.GamePoints
-import kotlinx.android.synthetic.main.activity_mission_meter.*
 import android.content.res.ColorStateList
+import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.widget.EditText
+import com.df.kolesnikovvv.wargameassistant.DrawerContract
 import com.df.kolesnikovvv.wargameassistant.MissionMeterContract
+import com.df.kolesnikovvv.wargameassistant.R
+import com.df.kolesnikovvv.wargameassistant.entity.GamePoints
 import com.df.kolesnikovvv.wargameassistant.entity.SecondaryMissionVp
 import com.df.kolesnikovvv.wargameassistant.entity.TurnVp
+import com.df.kolesnikovvv.wargameassistant.presenter.DrawerPresenter
 import com.df.kolesnikovvv.wargameassistant.presenter.MissionMeterPresenter
 import com.df.kolesnikovvv.wargameassistant.view.adapters.SecondaryMissionsAdapter
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_mission_meter.*
 
 /**
  * Логика сохранения данных
@@ -36,9 +41,11 @@ import com.df.kolesnikovvv.wargameassistant.view.adapters.SecondaryMissionsAdapt
  * RESET ресете заносим пустые строки в соответствующие элементы массива класса
  * SAVE при onStop парсим массивы значений класса в строку и пишем в SP с ключом gameData
  **/
-class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
+class MissionMeterActivity : BaseDrawerActivity(), MissionMeterContract.View, NavigationView.OnNavigationItemSelectedListener {
 
     private var presenter: MissionMeterContract.Presenter? = null
+    private var drawerPresenter: DrawerContract.Presenter? = null
+
     private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar)}
     private lateinit var recyclerView: RecyclerView
 
@@ -69,6 +76,10 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
             showResetDialog()
         }
 
+        drawerPresenter = DrawerPresenter(this)
+
+        findViewById<NavigationView>(R.id.nav_view).setNavigationItemSelectedListener(this)
+
         presenter?.onViewCreated()
     }
 
@@ -81,6 +92,21 @@ class MissionMeterActivity : BaseActivity(), MissionMeterContract.View {
         presenter?.onDestroy()
         presenter = null
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        drawerPresenter?.navigationItemSelected(item, this)
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
     }
 
     override fun showFullResultDialog(result: String) {
