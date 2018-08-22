@@ -26,6 +26,7 @@ import com.df.kolesnikovvv.wargameassistant.presenter.MissionMeterPresenter
 import com.df.kolesnikovvv.wargameassistant.view.adapters.SecondaryMissionsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_mission_meter.*
+import kotlinx.android.synthetic.main.content_mission_meter.*
 
 /**
  * Логика сохранения данных
