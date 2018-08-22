@@ -11,5 +11,6 @@
     <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="std_padding">8dp</dimen>
     <dimen name="small_padding">4dp</dimen>
+    <dimen name="cp_num_size">40sp</dimen>
 
 </resources>
