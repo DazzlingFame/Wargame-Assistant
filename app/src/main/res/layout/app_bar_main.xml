@@ -34,8 +34,7 @@
                 android:layout_marginStart="@dimen/std_padding"
                 android:layout_marginEnd="@dimen/std_padding"/>
         </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>
