@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.activities.MissionMeterActivity"
-    tools:showIn="@layout/activity_mission_meter">
+    tools:context=".view.activities.MissionMeterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

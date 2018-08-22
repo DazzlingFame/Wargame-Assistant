@@ -24,6 +24,9 @@ class DrawerPresenter(context: Context) : DrawerContract.Presenter {
             R.id.nav_vp_tracker -> {
                 router.navigateToMissionMeter(context)
             }
+            R.id.nav_cp_tracker -> {
+                router.navigateToCpMeter(context)
+            }
             else -> {
                 router.navigateToMain(context)
             }

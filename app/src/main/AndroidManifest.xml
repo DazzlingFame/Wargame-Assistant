@@ -27,6 +27,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".view.activities.CpMeterActivity"
+            android:label="Command Points Meter"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.activities.MissionMeterActivity"
             android:label="@string/title_activity_mission_meter"
             android:parentActivityName=".view.activities.MainActivity"

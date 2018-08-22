@@ -24,6 +24,10 @@
                 android:id="@+id/nav_vp_tracker"
                 android:icon="@drawable/ic_menu_vp"
                 android:title="@string/victory_points_tracker_title" />
+            <item
+                android:id="@+id/nav_cp_tracker"
+                android:icon="@drawable/ic_menu_vp"
+                android:title="@string/cp_tracker_name" />
         </menu>
     </item>
 

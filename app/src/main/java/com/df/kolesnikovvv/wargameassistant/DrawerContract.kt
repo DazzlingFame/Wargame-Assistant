@@ -16,6 +16,7 @@ interface DrawerContract {
 
     interface Router {
         fun navigateToMissionMeter(context: Context)
+        fun navigateToCpMeter(context: Context)
         fun navigateToMain(context: Context)
     }
 }
