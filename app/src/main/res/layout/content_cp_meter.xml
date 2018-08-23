@@ -21,7 +21,8 @@
             android:id="@+id/btn_my_cp_minus"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@drawable/minus"
+            android:background="@color/white"
             android:layout_weight="3" />
 
         <TextView
@@ -40,7 +41,8 @@
             android:id="@+id/btn_my_cp_plus"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@drawable/plus"
+            android:background="@color/white"
             android:layout_weight="3" />
     </LinearLayout>
 
@@ -60,7 +62,8 @@
             android:id="@+id/btn_opp_cp_minus"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@drawable/minus_opp"
+            android:background="@color/white"
             android:layout_weight="3" />
 
         <TextView
@@ -79,7 +82,8 @@
             android:id="@+id/btn_my_opp_plus"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@drawable/plus_opp"
+            android:background="@color/white"
             android:layout_weight="3" />
     </LinearLayout>
 
