@@ -195,11 +195,11 @@ class MissionMeterActivity : BaseDrawerActivity(), MissionMeterContract.View, Na
         return object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable) {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 ViewCompat.setBackgroundTintList(elem, ColorStateList.valueOf(ContextCompat.getColor(this@MissionMeterActivity, R.color.colorAccent)))
             }
+
+            override fun afterTextChanged(s: Editable) {}
         }
     }
 }
