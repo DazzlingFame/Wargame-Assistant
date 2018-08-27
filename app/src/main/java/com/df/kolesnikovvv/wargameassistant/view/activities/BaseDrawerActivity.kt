@@ -1,10 +1,12 @@
 package com.df.kolesnikovvv.wargameassistant.view.activities
 
+import android.app.Activity
 import android.os.Build
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import com.df.kolesnikovvv.wargameassistant.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,6 +26,11 @@ abstract class BaseDrawerActivity: AppCompatActivity() {
                 window.statusBarColor = getColor(R.color.colorPrimaryDark)
             }
         }
+    }
+
+    protected fun closeKeyboard() {
+        val inputManager: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(currentFocus.windowToken, InputMethodManager.SHOW_FORCED)
     }
 
     private fun initView(toolbar: Toolbar) {

@@ -6,12 +6,14 @@ import com.df.kolesnikovvv.wargameassistant.entity.Unit
 interface MainContract {
     interface View {
         fun publishDataList(data: ArrayList<Unit>)
+        fun resetSearchText()
     }
 
     interface Presenter {
         //User actions
         fun listItemClicked(item: Unit)
         fun searchTextChanged(text: String)
+        fun searchResetClicked()
 
         //Model updates
         fun onViewCreated()

@@ -11,6 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.widget.EditText
+import android.widget.ImageButton
 import com.df.kolesnikovvv.wargameassistant.DrawerContract
 import com.df.kolesnikovvv.wargameassistant.MainContract
 import com.df.kolesnikovvv.wargameassistant.R
@@ -22,7 +23,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnNavigationItemSelectedListener {
-
     private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar)}
     override fun getToolbarInstance(): Toolbar? = toolbar
 
@@ -48,6 +48,12 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
 
         findViewById<NavigationView>(R.id.nav_view).setNavigationItemSelectedListener(this)
 
+        val btnResetSearch = findViewById<ImageButton>(R.id.ib_reset_search)
+        btnResetSearch.setOnClickListener {
+            presenter?.searchResetClicked()
+            closeKeyboard()
+        }
+
         presenter?.onViewCreated()
     }
 
@@ -67,6 +73,10 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
             adapter = viewAdapter
             itemAnimator = DefaultItemAnimator()
         }
+    }
+
+    override fun resetSearchText() {
+        etSearch.setText("")
     }
 
     override fun onBackPressed() {
