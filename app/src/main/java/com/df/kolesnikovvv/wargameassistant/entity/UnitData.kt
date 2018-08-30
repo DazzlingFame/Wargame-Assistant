@@ -5,7 +5,7 @@ import com.df.kolesnikovvv.wargameassistant.R
 data class UnitData (
         val necrons: ArrayList<Unit> = arrayListOf(
                 Unit("Imotekh the Stormlord",
-                        "M:5 WS:2+ BS:2+ S:5 T:5 W:6 A:3 Sv:2+ Ld: 10",
+                        "M:5 WS:2+ BS:2+ S:5 T:5 W:6 A:3 Sv:2+ Ld:10",
                         R.drawable.necron_imotekh,
                         "Gauntlet of fire\n" +
                                 "AsD6 8\" S:4 AP:0 D:1 (This weapon automatically hits its target.)\n\n" +
@@ -26,7 +26,7 @@ data class UnitData (
                                 "Grand Strategist: If your army is Battle-forged, you receive 1 additional Command Point if Imotekh the Stormlord is your Warlord.\n\n" +
                                 "Phase Shifter: Imotekh the Stormlord has a 4+ invulnerable save."),
                 Unit("Nemesor Zahndrekh",
-                        "M:5 WS:2+ BS:2+ S:5 T:5 W:6 A:3 Sv:2+ Ld: 10",
+                        "M:5 WS:2+ BS:2+ S:5 T:5 W:6 A:3 Sv:2+ Ld:10",
                         R.drawable.necron_nemesor,
                         "Staff of light (shooting)\n" +
                                 "As3 12\" S:5 AP:2 D:1\n\n" +
@@ -44,7 +44,7 @@ data class UnitData (
                                 "2: Quell the Rebellion: Improve the Ballistic Skill of models in this unit by 1 (e.g. a Ballistic Skill of 3+ becomes 2+).\n" +
                                 "3: Solarmills? Charge!: Re-roll failed charge rolls for this unit."),
                 Unit("Vargard Obyron",
-                        "M:5 WS:2+ BS:3+ S:5 T:5 W:6 A:4 Sv:2+ Ld: 10",
+                        "M:5 WS:2+ BS:3+ S:5 T:5 W:6 A:4 Sv:2+ Ld:10",
                         R.drawable.necron_obyron,
                                 "Warscythe\n" +
                                 "Ml S:+2 AP:4 D:2",
@@ -57,7 +57,7 @@ data class UnitData (
                                 "The Vargard’s Duty: Roll a D6 each time Nemesor Zahndrekh loses a wound whilst he is within 3\" of Vargard Obyron; on a 2+ Obyron can intercept that hit – " +
                                 "Zahndrekh does not lose a wound but Obyron suffers a mortal wound."),
                 Unit("Illuminor Szeras",
-                        "M:6 WS:3+ BS:3+ S:4 T:4 W:5 A:4 Sv:3+ Ld: 10",
+                        "M:6 WS:3+ BS:3+ S:4 T:4 W:5 A:4 Sv:3+ Ld:10",
                         R.drawable.necron_illuminor,
                         "Eldritch Lance (shooting)\n" +
                                 "As1 36\" S:8 AP:4 D:D6\n\n" +
@@ -74,7 +74,7 @@ data class UnitData (
                                 "3: Ballistic Skill improved by 1 (e.g. a Ballistic Skill of 3+ becomes 2+)\n" +
                                 "A unit can only be the target of this ability once per battle."),
                 Unit("Orikan the Diviner",
-                        "M:5 WS:3+ BS:3+ S:4 T:4 W:5 A:2 Sv:4+ Ld: 10",
+                        "M:5 WS:3+ BS:3+ S:4 T:4 W:5 A:2 Sv:4+ Ld:10",
                         R.drawable.necron_orikan,
                         "Staff of Tomorrow\n" +
                                 "Ml S:U AP:3 D:D3",
@@ -83,9 +83,9 @@ data class UnitData (
                                 "Technomancer: Add 1 to Reanimation Protocols rolls for models from SAUTEKH units within 3\" of any friendly SAUTEKH CRYPTEKS.\n\n" +
                                 "The Stars Are Right: Roll a D6 at the start of each of your turns. If the result is less than the current battle round number, Orikan uses the Orikan Empowered " +
                                 "profile for the rest of the game (though any damage he has sustained is carried over).\n" +
-                                "M:5 WS:2+ BS:2+ S:7 T:7 W:7 A:4 Sv:4+ Ld: 10"),
+                                "M:5 WS:2+ BS:2+ S:7 T:7 W:7 A:4 Sv:4+ Ld:10"),
                 Unit("Anrakyr the Traveller",
-                        "M:5 WS:3+ BS:3+ S:4 T:4 W:5 A:2 Sv:4+ Ld: 10",
+                        "M:5 WS:3+ BS:3+ S:4 T:4 W:5 A:2 Sv:4+ Ld:10",
                         R.drawable.necron_anrakyr,
                         "Tachyon arrow\n" +
                                 "As1 120\" S:10 AP:5 D:D6 (This weapon can only be used once per battle.)\n\n" +
@@ -99,7 +99,7 @@ data class UnitData (
                                 "My Will Be Done: At the beginning of your turn, choose a friendly NECRONS INFANTRY unit within 6\" of Anrakyr the Traveller. Add 1 to Advance, charge and hit " +
                                 "rolls for that unit until the beginning of your next turn. A unit can only be chosen as the target of this ability once in each turn."),
                 Unit("Trazyn the Infinite",
-                        "M:5 WS:3+ BS:3+ S:4 T:4 W:5 A:2 Sv:4+ Ld: 10",
+                        "M:5 WS:3+ BS:3+ S:4 T:4 W:5 A:2 Sv:4+ Ld:10",
                         R.drawable.necron_trazyn,
                         "Empathic Obliterator\n" +
                                 "Ml S:+2 AP:1 D:D3",
@@ -112,7 +112,7 @@ data class UnitData (
                                 "or you rolled a 1, remove Trazyn the Infinite " +
                                 "as a casualty as normal."),
                 Unit("Catacomb command barge",
-                        "M:12 WS:2+ BS:2+ S:5 T:6 W:8 A:3 Sv:3+ Ld: 10",
+                        "M:12 WS:2+ BS:2+ S:5 T:6 W:8 A:3 Sv:3+ Ld:10",
                         R.drawable.necron_bargelord,
                         "Staff of light (shooting)\n" +
                                 "As3 12\" S:5 AP:2 D:1\n\n" +
@@ -137,7 +137,7 @@ data class UnitData (
                                 "turn, you can make Reanimation Protocols rolls for models from a friendly <DYNASTY> INFANTRY unit within 3\" of this model.\n\n" +
                                 "Explodes: If this model is reduced to 0 wounds, roll a D6 before removing it from the battlefield. On a 6 it explodes, and each unit within 3\" suffers a mortal wound."),
                 Unit("Overlord",
-                        "M:5 WS:2+ BS:2+ S:5 T:5 W:5 A:3 Sv:3+ Ld: 10",
+                        "M:5 WS:2+ BS:2+ S:5 T:5 W:5 A:3 Sv:3+ Ld:10",
                         R.drawable.necron_overlord,
                         "Staff of light (shooting)\n" +
                                 "As3 12\" S:5 AP:2 D:1\n\n" +
@@ -158,7 +158,7 @@ data class UnitData (
                                 "of the turn, you can make Reanimation Protocols rolls for models from a friendly <DYNASTY> INFANTRY unit within 3\" of this model.\n\n" +
                                 "Living metal"),
                 Unit("Lord",
-                        "M:5 WS:3+ BS:3+ S:5 T:5 W:4 A:3 Sv:3+ Ld: 10",
+                        "M:5 WS:3+ BS:3+ S:5 T:5 W:4 A:3 Sv:3+ Ld:10",
                         R.drawable.necron_lord,
                         "Staff of light (shooting)\n" +
                                 "As3 12\" S:5 AP:2 D:1\n\n" +
@@ -175,7 +175,7 @@ data class UnitData (
                                 "of the turn, you can make Reanimation Protocols rolls for models from a friendly <DYNASTY> INFANTRY unit within 3\" of this model.\n\n" +
                                 "Living Metal"),
                 Unit("Cryptek",
-                        "M:5 WS:3+ BS:3+ S:4 T:4 W:4 A:1 Sv:4+ Ld: 10",
+                        "M:5 WS:3+ BS:3+ S:4 T:4 W:4 A:1 Sv:4+ Ld:10",
                         R.drawable.necron_cryptek,
                         "Staff of light\n" +
                                 "As3 12\" S:5 AP:2 D:1",
@@ -186,7 +186,7 @@ data class UnitData (
                                 " regains D3 lost wounds, rather than 1, from its Living Metal ability.\n\n" +
                                 "Living metal"),
                 Unit("Destroyer lord",
-                        "M:10 WS:3+ BS:3+ S:5 T:6 W:6 A:4 Sv:3+ Ld: 10",
+                        "M:10 WS:3+ BS:3+ S:5 T:6 W:6 A:4 Sv:3+ Ld:10",
                         R.drawable.necron_destrlord,
                         "Staff of light (shooting)\n" +
                                 "As3 12\" S:5 AP:2 D:1\n\n" +
@@ -220,17 +220,17 @@ data class UnitData (
                                 "As2 24\" S:5 AP:- D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1)",
                         "Reanimation protocols"),
                 Unit("Lychguard",
-                        "M:5 WS:3+ BS:3+ S:5 T:5 W:2 A:2 Sv:3+ Ld: 10",
+                        "M:5 WS:3+ BS:3+ S:5 T:5 W:2 A:2 Sv:3+ Ld:10",
                         R.drawable.necron_lychguard,
                         "Hyperphase sword\n" +
                                 "Ml S:+1 AP:3 D:1\n\n" +
                                 "Warscythe\n" +
                                 "Ml S:+2 AP:4 D:2",
-                        "Dispersion Shield: A model equipped with a dispersion shield has a 4+ invulnerable save.\n\n" +
+                        "Dispersion ShieLd:A model equipped with a dispersion shield has a 4+ invulnerable save.\n\n" +
                                 "Guardian Protocols: Roll a D6 each time a friendly <DYNASTY> CHARACTER loses a wound whilst they are within 3\" of this unit; on a 2+ a model from this unit " +
                                 "can intercept that hit – the character does not lose a wound but this unit suffers a mortal wound."),
                 Unit("Deathmarks",
-                        "M:5 WS:3+ BS:3+ S:4 T:4 W:1 A:1 Sv:3+ Ld: 10",
+                        "M:5 WS:3+ BS:3+ S:4 T:4 W:1 A:1 Sv:3+ Ld:10",
                         R.drawable.necron_deathmark,
                         "Synaptic disintegrator\n" +
                                 "Rf1 24\" S:4 AP:- D:1 (This weapon may target a CHARACTER even if it is not the closest enemy unit. Each time you roll a wound roll of 6+ for this weapon, the target " +
@@ -242,7 +242,7 @@ data class UnitData (
                                 "can then make a shooting attack with this unit as if it were your Shooting phase, but this attack must target the enemy unit that was just set up."
                         ),
                 Unit("C'tan shard of the Deciever",
-                        "M:8 WS:2+ BS:2+ S:7 T:7 W:8 A:4 Sv:4+ Ld: 10",
+                        "M:8 WS:2+ BS:2+ S:7 T:7 W:8 A:4 Sv:4+ Ld:10",
                         R.drawable.necron_deciever,
                         "Star-god fists\n" +
                                 "Ml S:U AP:4 D:3",
@@ -255,7 +255,7 @@ data class UnitData (
                                 "a hole in reality, and each unit within 3\" suffers D3 mortal wounds.\n\n" +
                                 "Enslaved Star God: This model can never have a Warlord Trait."),
                 Unit("C'tan shard of the Nightbringer",
-                        "M:8 WS:2+ BS:2+ S:7 T:7 W:8 A:4 Sv:4+ Ld: 10",
+                        "M:8 WS:2+ BS:2+ S:7 T:7 W:8 A:4 Sv:4+ Ld:10",
                         R.drawable.necron_nightbringer,
                         "Gaze of death\n" +
                                 "AsD6 12\" S:* AP:4 D:D3 (This weapon wounds on a 2+, unless it is targeting a VEHICLE unit, in which case it wounds on a 6+.)\n\n" +
@@ -267,7 +267,7 @@ data class UnitData (
                                 "a hole in reality, and each unit within 3\" suffers D3 mortal wounds.\n\n" +
                                 "Enslaved Star God: This model can never have a Warlord Trait."),
                 Unit("Canoptek wraiths",
-                        "M:12 WS:3+ BS:3+ S:6 T:5 W:3 A:3 Sv:4+ Ld: 10",
+                        "M:12 WS:3+ BS:3+ S:6 T:5 W:3 A:3 Sv:4+ Ld:10",
                         R.drawable.necron_wraith,
                         "Particle caster\n" +
                                 "P1 12\" S:6 AP:0 D:1\n\n" +
@@ -281,13 +281,13 @@ data class UnitData (
                         "Wraith Form: Models in this unit have a 3+ invulnerable save, and can move across models and terrain as if they were not there. Models in this unit " +
                                 "can shoot and charge even if they Fell Back this turn."),
                 Unit("Canoptek scarabs",
-                        "M:10 WS:4+ BS:-- S:3 T:3 W:3 A:4 Sv:6+ Ld: 10",
+                        "M:10 WS:4+ BS:-- S:3 T:3 W:3 A:4 Sv:6+ Ld:10",
                         R.drawable.necron_scarabs,
                         "Feeder mandibles\n" +
                                 "Ml S:U AP:0 D:1 (If the target’s Toughness is higher than this attack’s Strength, this weapon always wounds the target on a wound roll of 5+.)",
                         ""),
                 Unit("Tomb blades",
-                        "M:14 WS:3+ BS:3+ S:4 T:5 W:2 A:1 Sv:4+ Ld: 10",
+                        "M:14 WS:3+ BS:3+ S:4 T:5 W:2 A:1 Sv:4+ Ld:10",
                         R.drawable.necron_tombblade,
                         "Gauss blaster\n" +
                                 "Rf1 24\" S:5 AP:2 D:1\n\n" +
@@ -301,7 +301,7 @@ data class UnitData (
                                 "Shadowloom: A model with a shadowloom has a 5+ invulnerable save.\n\n" +
                                 "Nebuloscope: Models do not receive the bonus to their save for being in cover against attacks made by a model with a nebuloscope."),
                 Unit("Destroyers",
-                        "M:10 WS:3+ BS:3+ S:4 T:5 W:3 A:2 Sv:3+ Ld: 10",
+                        "M:10 WS:3+ BS:3+ S:4 T:5 W:3 A:2 Sv:3+ Ld:10",
                         R.drawable.necron_destroyer,
                         "Gauss cannon\n" +
                                 "Hv3 24\" S:6 AP:3 D:D3",
@@ -309,7 +309,7 @@ data class UnitData (
                                 "Hardwired Hatred: You can re-roll hit rolls of 1 for this unit.\n\n" +
                                 "Repulsor Platform: This unit can move and fire Heavy weapons without suffering the penalty to its hit rolls."),
                 Unit("Heavy destroyers",
-                        "M:10 WS:3+ BS:3+ S:4 T:5 W:3 A:2 Sv:3+ Ld: 10",
+                        "M:10 WS:3+ BS:3+ S:4 T:5 W:3 A:2 Sv:3+ Ld:10",
                         R.drawable.necron_destroyer,
                         "Heavy gauss cannon\n" +
                                 "Hv1 36\" S:9 AP:4 D:D6",
@@ -317,7 +317,7 @@ data class UnitData (
                                 "Hardwired Hatred: You can re-roll hit rolls of 1 for this unit.\n\n" +
                                 "Repulsor Platform: This unit can move and fire Heavy weapons without suffering the penalty to its hit rolls."),
                 Unit("Canoptek spyders",
-                        "M:6 WS:4+ BS:4+ S:6 T:6 W:4 A:4 Sv:3+ Ld: 10",
+                        "M:6 WS:4+ BS:4+ S:6 T:6 W:4 A:4 Sv:3+ Ld:10",
                         R.drawable.necron_spyder,
                         "Particle beamer\n" +
                                 "As3 24\" S:6 AP:0 D:1\n\n" +
@@ -332,7 +332,7 @@ data class UnitData (
                                 "units within 6\" of the unit being rolled for unleashes reinforcements: return a Canoptek Scarab Swarm to the depleted unit, in unit coherency and more than" +
                                 " 1\" from enemy models. If you cannot do this because there is no room to place the model, do not set it up."),
                 Unit("Monolith",
-                        "M:* WS:6+ BS:*+ S:8 T:8 W:20 A:3 Sv:3+ Ld: 10",
+                        "M:* WS:6+ BS:*+ S:8 T:8 W:20 A:3 Sv:3+ Ld:10",
                         R.drawable.necron_monolith,
                         "Gauss flux arc\n" +
                                 "Hv3 24\" S:5 AP:2 D:1\n\n" +
@@ -355,7 +355,7 @@ data class UnitData (
                                 "Scythes and Monoliths from your army are destroyed, any friendly <DYNASTY> units still on their tomb world are considered to be slain.\n\n" +
                                 "Explodes: If this model is reduced to 0 wounds, roll a D6 before removing it from the battlefield. On a 6 it explodes, and each unit within 6\" suffers D6 mortal wounds."),
                 Unit("Anihillation barge",
-                        "M:12 WS:6+ BS:3+ S:5 T:6 W:8 A:3 Sv:4+ Ld: 10",
+                        "M:12 WS:6+ BS:3+ S:5 T:6 W:8 A:3 Sv:4+ Ld:10",
                         R.drawable.necron_barge,
                         "Gauss cannon\n" +
                                 "Hv3 24\" S:6 AP:3 D:D3\n\n" +
@@ -368,7 +368,7 @@ data class UnitData (
                                 "(e.g. if this model suffers 4 damage, if you then roll a 3 or less the damage is ignored). Quantum Shielding cannot prevent damage caused by mortal wounds.\n\n" +
                                 "Explodes: If this model is reduced to 0 wounds, roll a D6 before removing it from the battlefield. On a 6 it explodes, and each unit within 3\" suffers a mortal wound."),
                 Unit("Doomsday arc",
-                        "M:* WS:6+ BS:*+ S:6 T:6 W:14 A:* Sv:4+ Ld: 10",
+                        "M:* WS:6+ BS:*+ S:6 T:6 W:14 A:* Sv:4+ Ld:10",
                         R.drawable.necron_doomsday,
                         "Dommsday cannon\n" +
                                 "- Low power  HvD6 36\" S:8  AP:2 D:D3\n" +
@@ -385,7 +385,7 @@ data class UnitData (
                                 "Quantum Shielding: Each time this model fails a saving throw, roll a D6. If the result is less than the damage inflicted by that attack, the damage is ignored (e.g. if " +
                                 "this model suffers 4 damage, if you then roll a 3 or less the damage is ignored). Quantum Shielding cannot prevent damage caused by mortal wounds."),
                 Unit("Transcendent C'tan",
-                        "M:8 WS:2+ BS:2+ S:7 T:7 W:8 A:4 Sv:4+ Ld: 10",
+                        "M:8 WS:2+ BS:2+ S:7 T:7 W:8 A:4 Sv:4+ Ld:10",
                         R.drawable.necron_transcendant,
                                 "Crackling tendrils\n" +
                                 "Ml S:* AP:4 D:D6",
@@ -397,7 +397,7 @@ data class UnitData (
                                 "Fractured Personality: Before the battle, you can pick 5 one of the abilities opposite to apply to this model for the duration of the battle. Alternatively, you can " +
                                 "roll two D6 to randomly determine two abilities and apply them both to this model for the duration of the battle (duplicate results have no effect)."),
                 Unit("Ghost arc",
-                        "M:* WS:6+ BS:*+ S:6 T:6 W:14 A:* Sv:4+ Ld: 10",
+                        "M:* WS:6+ BS:*+ S:6 T:6 W:14 A:* Sv:4+ Ld:10",
                         R.drawable.necron_ghostarc,
                                 "Gauss flayer array\n" +
                                 "Rf5 24\" S:4 AP:1 D:1",
@@ -416,7 +416,7 @@ data class UnitData (
                                 "from <DYNASTY> Warriors units within 3\" of any friendly <DYNASTY> Ghost Arks. You cannot use this ability on a unit that has been the target of a resurrection " +
                                 "orb or the Orb of Eternity this turn."),
                 Unit("Doom scythe",
-                    "M:* WS:6+ BS:*+ S:6 T:6 W:12 A:* Sv:3+ Ld: 10",
+                        "M:* WS:6+ BS:*+ S:6 T:6 W:12 A:* Sv:3+ Ld:10",
                     R.drawable.necron_doomscy,
                     "Death ray\n" +
                             "HvD3 24\" S:10 AP:4 D:D6\n\n" +
@@ -435,7 +435,7 @@ data class UnitData (
                             "Crash and Burn: If this model is reduced to 0 wounds, roll a D6 before removing it from the battlefield. On a 6 it crashes in a fiery explosion and each unit within " +
                             "6\" suffers D3 mortal wounds."),
                 Unit("Night scythe",
-                        "M:* WS:6+ BS:*+ S:6 T:6 W:12 A:* Sv:3+ Ld: 10",
+                        "M:* WS:6+ BS:*+ S:6 T:6 W:12 A:* Sv:3+ Ld:10",
                         R.drawable.necron_doomscy,
                         "Tesla destructor\n" +
                                 "As4 24\" S:7 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1.)",
@@ -456,7 +456,7 @@ data class UnitData (
                                 "battlefield by the Night Scythe. Set up the unit so that it is wholly within 3\" of this model and more than 1\" from any enemy models. If all <DYNASTY> Night Scythes " +
                                 "and Monoliths from your army are destroyed, any friendly <DYNASTY> units still on their tomb world are considered to be slain."),
                 Unit("Obelisk",
-                        "M:* WS:6+ BS:*+ S:8 T:8 W:24 A:3 Sv:3+ Ld: 10",
+                        "M:* WS:6+ BS:*+ S:8 T:8 W:24 A:3 Sv:3+ Ld:10",
                         R.drawable.necron_obelisk,
                         "Tesla sphere\n" +
                                 "As5 24\" S:7 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1.)",
@@ -471,7 +471,7 @@ data class UnitData (
                                 "On a roll of 6, that unit suffers D3 mortal wounds.\n\n" +
                                 "Explodes: If this model is reduced to 0 wounds, roll a D6 before removing it from the battlefield. On a 6 it explodes, and each unit within 2D6\" suffers D6 mortal wounds."),
                 Unit("Tesseract vault",
-                        "M:* WS:6+ BS:*+ S:8 T:7 W:28 A:3 Sv:3+ Ld: 10",
+                        "M:* WS:6+ BS:*+ S:8 T:7 W:28 A:3 Sv:3+ Ld:10",
                         R.drawable.necron_tesseract,
                         "Tesla sphere\n" +
                                 "As5 24\" S:7 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1.)",
@@ -482,17 +482,128 @@ data class UnitData (
                                 "Living Metal\n\n" +
                                 "Powers of the C’tan: This model knows four Powers of the C’tan (pg 113). It can use a number of different Powers of the C’tan equal to the number in the " +
                                 "damage table above at the end of each of your Movement phases.\n\n" +
-                                "Transtemporal Force Field: This model has a 4+ invulnerable save.\n\n" +
+                                "Transtemporal Force FieLd:This model has a 4+ invulnerable save.\n\n" +
                                 "Vengeance of the Enchained: If this model is reduced to 0 wounds, roll a D6 before removing it from the battlefield. On a 4+ the Transcendent C’tan contained " +
                                 "within takes their vengeance, and each unit within 2D6\" suffers D6 mortal wounds.")
         ),
         val admechs: ArrayList<Unit> = arrayListOf(
+                Unit("Belisarius Cawl",
+                        "M:6 WS:2+ BS:2+ S:5 T:6 W:8 A:4 Sv:2+ Ld:9",
+                        R.drawable.mech_ranger,
+                        "Solar atomiser\n" +
+                                "AsD3 12\" S:10 AP:4 D:D3 (If the target is within half range of this weapon, it has a Damage of D6.)\n\n" +
+                                "Arc scourge\n" +
+                                "Ml S:x2 AP:1 D:1 (When attacking a VEHICLE, this weapon has a Damage of D3.)\n\n" +
+                                "Mechadendrite hive\n" +
+                                "Ml S:U AP:0 D:1 (Each time Belisarius Cawl fights, he can make 2D6 additional attacks with this weapon.)\n\n" +
+                                "Omnissian axe\n" +
+                                "Ml S:+1 AP:2 D:2",
+                        "Canticles of Omnissiah\n\n" +
+                                "Archmagos: Whilst Belisarius Cawl is on the battlefield, you can add or subtract 1 when rolling on the Canticles of the Omnissiah table (pg 73).\n\n" +
+                                "Refractor FieLd:Belisarius Cawl has a 5+ invulnerable save.\n\n" +
+                                "Self-repair Mechanisms: At the beginning of each of your turns, Belisarius Cawl regains D3 lost wounds.\n\n" +
+                                "Master of Machines: At the end of your Movement phase Belisarius Cawl can repair a single friendly IMPERIUM model within 3\" (but not himself). The model being " +
+                                "repaired regains 1 lost wound, unless it is an ADEPTUS MECHANICUS model, in which case it regains D3 lost wounds. A model may not be the target of the Master of" +
+                                " Machines ability more than once per turn.\n\n" +
+                                "Lord of Mars: You can re-roll any hit rolls in the Shooting phase for friendly MARS units within 6\"."),
+                Unit("Tech-priest Dominus",
+                        "M:6 WS:3+ BS:2+ S:4 T:4 W:5 A:3 Sv:2+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Eradication ray\n" +
+                                "HvD3 24\" S:6 AP:2 D:1 (Attacks from this weapon that target enemies at 8\" or less are resolved with an AP of -4 and a Damage of D3.)\n\n" +
+                                "Macrostubber\n" +
+                                "Pl5 12\" S:4 AP:0 D:1\n\n" +
+                                "Volkite blaster\n" +
+                                "Hv3 24\" S:6 AP:0 D:1 (Each time you make a wound roll of 6+ for this weapon, the target suffers a mortal wound in addition to any other damage.)\n\n" +
+                                "Omnissian axe\n" +
+                                "Ml S:+1 AP:2 D:2\n\n" +
+                                "Phosphor serpenta\n" +
+                                "As1 18\" S:5 AP:1 D:1 (Units attacked by this weapon do not gain any bonus to their saving throws for being in cover.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Master of Machines: At the end of your Movement phase this model can repair a single friendly <FORGE WORLD> or QUESTOR " +
+                                "MECHANICUS model within 3\" (but not itself). If the model being repaired is a <FORGE WORLD> model, it regains D3 lost wounds; if it is a QUESTOR MECHANICUS model, " +
+                                "it regains 1 lost wound. A model may not be the target of the Master of Machines ability more than once per turn.\n\n" +
+                                "Masterwork Bionics: At the beginning of each of your turns, this model regains D3 lost wounds.\n\n" +
+                                "Lord of the Machine Cult: You can re-roll hit rolls of 1 in the Shooting phase for friendly <FORGE WORLD> units within 6\".\n\n" +
+                                "Refractor Field: This model has a 5+ invulnerable save."),
+                Unit("Tech-priest Enginseer",
+                        "M:6 WS:4+ BS:4+ S:4 T:4 W:4 A:2 Sv:3+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Laspistol\n" +
+                                "Pl1 12\" S:3 AP:0 D:1\n\n" +
+                                "Omnissian axe\n" +
+                                "Ml S:+1 AP:2 D:2\n\n" +
+                                "Servo-arm\n" +
+                                "Ml S:x2 AP:2 D:3 (Each servo-arm can only be used to make one attack each time this model fights. When a model attacks with this weapon, you must subtract 1 from the hit roll.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Master of Machines: At the end of your Movement phase this model can repair a single friendly <FORGE WORLD> VEHICLE, ASTRA MILITARUM VEHICLE or QUESTOR MECHANICUS model within 3\". If the model being repaired is a <FORGE WORLD> or ASTRA MILITARUM model, it regains D3 lost wounds; if it is a QUESTOR MECHANICUS model, it regains 1 lost wound. A model may not be the target of the Master of Machines ability more than once per turn."),
                 Unit("Skitarii Rangers",
-                        "M:6 WS:4+ BS:3+ S:3 T:3 W:1 A:1 Sv:4+ Ld: 6",
+                        "M:6 WS:4+ BS:3+ S:3 T:3 W:1 A:1 Sv:4+ Ld:6\n" +
+                                "M:6 WS:4+ BS:3+ S:3 T:3 W:1 A:2 Sv:4+ Ld:7",
                         R.drawable.mech_ranger,
                         "Galvanic rifle\n" +
-                                "Rf1 30\" S:4 AP:0 D:1 (Eath time you make a wound roll of 6+ for this weapon, that hit is resolved with an AP of -1.)",
+                                "Rf1 30\" S:4 AP:0 D:1 (Each time you make a wound roll of 6+ for this weapon, that hit is resolved with an AP of -1.)",
                         "Canticles of Omnissiah\n\n" +
-                                "Bionics: All models in this unit have a 6+ invulnerable save.")
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Omnispex: Enemy units do not receive the benefit to their saving throws for being in cover against attacks made by a unit that includes a model with an omnispex.\n\n" +
+                                "Enhanced Data-tether: You can re-roll failed Morale tests for a unit that includes a model with an enhanced data-tether."),
+                Unit("Skitarii Vanguard",
+                        "M:6 WS:4+ BS:3+ S:3 T:3 W:1 A:1 Sv:4+ Ld:6\n" +
+                                "M:6 WS:4+ BS:3+ S:3 T:3 W:1 A:2 Sv:4+ Ld:7",
+                        R.drawable.mech_ranger,
+                        "Radium carbine\n" +
+                                "As3 18\" S:3 AP:0 D:1 (Each time you make a wound roll of 6+ for this weapon, that hit inflicts 2 damage instead of 1.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Rad-saturation: Reduce the Toughness of enemy units (other than VEHICLES) by 1 whilst they are within 1\" of any Skitarii Vanguard units.\n\n" +
+                                "Omnispex: Enemy units do not receive the benefit to their saving throws for being in cover against attacks made by a unit that includes a model with an omnispex.\n\n" +
+                                "Enhanced Data-tether: You can re-roll failed Morale tests for a unit that includes a model with an enhanced data-tether."),
+                Unit("Kataphron breachers",
+                        "M:6 WS:4+ BS:4+ S:5 T:5 W:3 A:3 Sv:3+ Ld:7",
+                        R.drawable.mech_ranger,
+                        "Heavy arc rifle\n" +
+                                "Hv2 36\" S:6 AP:2 D:D3 (When attacking a VEHICLE, this weapon has a Damage of D6.)\n\n" +
+                                "Torsion cannon\n" +
+                                "Hv1 24\" S:8 AP:4 D:D6\n\n" +
+                                "Arc claw\n" +
+                                "Ml S:+1 AP:1 D:1 (When attacking a VEHICLE, this weapon has a Damage of D3.)\n\n" +
+                                "Hydraulic claw\n" +
+                                "Ml S:x2 AP:1 D:D3 (When attacking with this weapon, you must subtract 1 from the hit roll.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Heavy Battle Servitor: Models in this unit do not suffer the penalty for firing a Heavy weapon after moving, but" +
+                                "can only Advance D3\"."),
+                Unit("Kataphron destroyers",
+                        "M:6 WS:4+ BS:4+ S:5 T:5 W:3 A:2 Sv:4+ Ld:7",
+                        R.drawable.mech_ranger,
+                        "Cognis flamer\n" +
+                                "AsD6 8\" S:4 AP:0 D:1 (This weapon automatically hits its target. In addition, when firing Overwatch with this weapon, roll two dice when determining how many attacks it makes and discard the lowest result.)\n\n" +
+                                "Heavy grav-cannon\n" +
+                                "Hv5 30\" S:5 AP:3 D:1 (If the target has a Save characteristic of 3+ or better, this weapon has a Damage characteristic of D3.)\n\n" +
+                                "Phosphor blaster\n" +
+                                "Rf1 24\" S:5 AP:1 D:1 (Units attacked by this weapon do not gain any bonus to their saving throws for being in cover.)\n\n" +
+                                "Plasma culverin\n" +
+                                "HvD6 36\" S:7 AP:3 D:1\n" +
+                                "HvD6 36\" S:8 AP:3 D:2 (On a hit roll of 1, the bearer is slain after all of this weapon’s shots have been resolved.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Heavy Battle Servitor: Models in this unit do not suffer the penalty for firing a Heavy weapon after moving, but\n" +
+                                "can only Advance D3\"."),
+                Unit("Servitors",
+                        "M:5 WS:5+ BS:5+ S:3 T:3 W:1 A:1 Sv:4+ Ld:6",
+                        R.drawable.mech_ranger,
+                        "Heavy bolter\n" +
+                                "Hv3 36\" S:5 AP:1 D:1\n\n" +
+                                "Multi-melta\n" +
+                                "Hv1 24\" S:8 AP:4 D:D6 (If the target is within half range of this weapon, roll two dice when inflicting damage with it and discard the lowest result.)\n\n" +
+                                "Plasma cannon\n" +
+                                "HvD3 36\" S:7 AP:3 D:1\n" +
+                                "HvD3 36\" S:8 AP:3 D:2 (On a hit roll of 1, the bearer is slain after all of this weapon’s shots have been resolved.)\n\n" +
+                                "Servo-arm\n" +
+                                "Ml S:x2 AP:2 D:3 (Each servo-arm can only be used to make one attack each time this model fights. When a model attacks with this weapon, you must subtract 1 from the hit roll.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Mindlock: Servitors improve both their Weapon Skill and Ballistic Skill to 4+, and their Leadership to 9, whilst" +
+                                "they are within 6\" of any friendly TECH-PRIESTS.")
         )
 )
