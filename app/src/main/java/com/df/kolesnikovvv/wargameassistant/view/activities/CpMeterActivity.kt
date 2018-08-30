@@ -13,10 +13,15 @@ import com.df.kolesnikovvv.wargameassistant.DrawerContract
 import com.df.kolesnikovvv.wargameassistant.R
 import com.df.kolesnikovvv.wargameassistant.presenter.CpMeterPresenter
 import com.df.kolesnikovvv.wargameassistant.presenter.DrawerPresenter
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_cp_meter.*
 import kotlinx.android.synthetic.main.app_bar_cp_meter.*
 
 class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var mAdView: AdView
+
     private val presenter: CpMeterContract.Presenter = CpMeterPresenter(this, this)
 
     private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
@@ -62,6 +67,12 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
         }
 
         presenter.onViewCreated()
+
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        MobileAds.initialize(this, "ca-app-pub-9010106401458654/2987228754")
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
     override fun setDataToView(myCp: Int, oppCp: Int) {

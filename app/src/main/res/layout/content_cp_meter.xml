@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="170dp" />
+        android:layout_marginBottom="180dp" />
 
     <ImageButton
         android:id="@+id/btn_my_cp_plus"
@@ -67,7 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="170dp" />
+        android:layout_marginTop="150dp" />
 
     <ImageButton
         android:id="@+id/btn_my_opp_plus"
@@ -80,5 +80,19 @@
         app:layout_constraintTop_toTopOf="@id/tv_opp_cp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp" />
+
+    <FrameLayout
+        android:id="@+id/ad_frame"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-9010106401458654/2987228754" />
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
