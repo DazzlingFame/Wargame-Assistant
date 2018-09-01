@@ -2,15 +2,18 @@ package com.df.kolesnikovvv.wargameassistant.view.activities
 
 import android.app.Activity
 import android.os.Build
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import com.df.kolesnikovvv.wargameassistant.R
-import kotlinx.android.synthetic.main.activity_main.*
 
 abstract class BaseDrawerActivity: AppCompatActivity() {
+
+    private lateinit var drawerLayout: DrawerLayout
+
 
     override fun onResume() {
         super.onResume()
@@ -35,10 +38,11 @@ abstract class BaseDrawerActivity: AppCompatActivity() {
 
     private fun initView(toolbar: Toolbar) {
         // Toolbar setup
+        drawerLayout = findViewById(R.id.drawer_layout)
         setSupportActionBar(toolbar)   // Replaces the 'ActionBar' with the 'Toolbar'
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
     }
 

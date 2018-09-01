@@ -2,10 +2,12 @@ package com.df.kolesnikovvv.wargameassistant.view.activities
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,7 +16,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import com.df.kolesnikovvv.wargameassistant.DrawerContract
 import com.df.kolesnikovvv.wargameassistant.MissionMeterContract
 import com.df.kolesnikovvv.wargameassistant.R
@@ -24,9 +28,6 @@ import com.df.kolesnikovvv.wargameassistant.entity.TurnVp
 import com.df.kolesnikovvv.wargameassistant.presenter.DrawerPresenter
 import com.df.kolesnikovvv.wargameassistant.presenter.MissionMeterPresenter
 import com.df.kolesnikovvv.wargameassistant.view.adapters.SecondaryMissionsAdapter
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_mission_meter.*
-import kotlinx.android.synthetic.main.content_mission_meter.*
 
 /**
  * Логика сохранения данных
@@ -50,6 +51,7 @@ class MissionMeterActivity : BaseDrawerActivity(), MissionMeterContract.View, Na
     private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar)}
     private lateinit var recyclerView: RecyclerView
 
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var myNameEt: EditText
     private lateinit var oppNameEt: EditText
 
@@ -65,15 +67,20 @@ class MissionMeterActivity : BaseDrawerActivity(), MissionMeterContract.View, Na
         getToolbarInstance()
         fixStatusBar()
 
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        val btnGetResult: Button = findViewById(R.id.btn_get_result)
+        val ibResetVp: ImageButton = findViewById(R.id.ib_reset_vp)
+        drawerLayout = findViewById(R.id.drawer_layout)
+
         fab.setOnClickListener {
             presenter?.sendResultClicked()
         }
 
-        btn_get_result.setOnClickListener {
+        btnGetResult.setOnClickListener {
             presenter?.getFullResultClicked()
         }
 
-        ib_reset_vp.setOnClickListener {
+        ibResetVp.setOnClickListener {
             showResetDialog()
         }
 
@@ -96,8 +103,8 @@ class MissionMeterActivity : BaseDrawerActivity(), MissionMeterContract.View, Na
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -106,7 +113,7 @@ class MissionMeterActivity : BaseDrawerActivity(), MissionMeterContract.View, Na
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         drawerPresenter?.navigationItemSelected(item, this)
-        drawer_layout.closeDrawer(GravityCompat.START)
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

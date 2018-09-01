@@ -3,6 +3,7 @@ package com.df.kolesnikovvv.wargameassistant.view.activities
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
@@ -16,8 +17,6 @@ import com.df.kolesnikovvv.wargameassistant.presenter.DrawerPresenter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_cp_meter.*
-import kotlinx.android.synthetic.main.app_bar_cp_meter.*
 
 class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var mAdView: AdView
@@ -28,6 +27,7 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
     override fun getToolbarInstance(): Toolbar? = toolbar
     private lateinit var tvMyCp: TextView
     private lateinit var tvOppCp: TextView
+    private lateinit var drawerLayout: DrawerLayout
 
     private var drawerPresenter: DrawerContract.Presenter? = null
 
@@ -42,13 +42,15 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
 
         tvMyCp = findViewById(R.id.tv_my_cp)
         tvOppCp = findViewById(R.id.tv_opp_cp)
+        drawerLayout = findViewById(R.id.drawer_layout)
 
         val myCpPlus: ImageButton = findViewById(R.id.btn_my_cp_plus)
         val myCpMinus: ImageButton = findViewById(R.id.btn_my_cp_minus)
         val oppCpPlus: ImageButton = findViewById(R.id.btn_my_opp_plus)
         val oppCpMinus: ImageButton = findViewById(R.id.btn_opp_cp_minus)
+        val ibResetCp: ImageButton = findViewById(R.id.ib_reset_cp)
 
-        ib_reset_cp.setOnClickListener {
+        ibResetCp.setOnClickListener {
             showResetDialog()
         }
 
@@ -81,8 +83,8 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -91,7 +93,7 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         drawerPresenter?.navigationItemSelected(item, this)
-        drawer_layout.closeDrawer(GravityCompat.START)
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

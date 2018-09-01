@@ -3,6 +3,7 @@ package com.df.kolesnikovvv.wargameassistant.view.activities
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -19,7 +20,6 @@ import com.df.kolesnikovvv.wargameassistant.entity.Unit
 import com.df.kolesnikovvv.wargameassistant.presenter.DrawerPresenter
 import com.df.kolesnikovvv.wargameassistant.presenter.MainPresenter
 import com.df.kolesnikovvv.wargameassistant.view.adapters.MainListingAdapter
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnNavigationItemSelectedListener {
@@ -34,6 +34,8 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     private lateinit var etSearch: EditText
+    private lateinit var drawerLayout: DrawerLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,8 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
         drawerPresenter = DrawerPresenter(this)
 
         findViewById<NavigationView>(R.id.nav_view).setNavigationItemSelectedListener(this)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
 
         val btnResetSearch = findViewById<ImageButton>(R.id.ib_reset_search)
         btnResetSearch.setOnClickListener {
@@ -80,8 +84,8 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -90,7 +94,7 @@ class MainActivity : BaseDrawerActivity(), MainContract.View, NavigationView.OnN
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         drawerPresenter?.navigationItemSelected(item, this)
-        drawer_layout.closeDrawer(GravityCompat.START)
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
