@@ -115,4 +115,24 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
         builder.create().show()
     }
 
+    public override fun onResume() {
+        super.onResume()
+
+        // Resume the AdView.
+        mAdView.resume()
+    }
+
+    public override fun onPause() {
+        // Pause the AdView.
+        mAdView.pause()
+
+        super.onPause()
+    }
+
+    public override fun onDestroy() {
+        // Destroy the AdView.
+        mAdView.destroy()
+
+        super.onDestroy()
+    }
 }
