@@ -217,7 +217,7 @@ data class UnitData (
                         "Gauss blaster\n" +
                                 "Rf1 24\" S:5 AP:2 D:1\n\n" +
                                 "Tesla carbine\n" +
-                                "As2 24\" S:5 AP:- D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1)",
+                                "As2 24\" S:5 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1)",
                         "Reanimation protocols"),
                 Unit("Lychguard",
                         "M:5 WS:3+ BS:3+ S:5 T:5 W:2 A:2 Sv:3+ Ld:10",
@@ -233,7 +233,7 @@ data class UnitData (
                         "M:5 WS:3+ BS:3+ S:4 T:4 W:1 A:1 Sv:3+ Ld:10",
                         R.drawable.necron_deathmark,
                         "Synaptic disintegrator\n" +
-                                "Rf1 24\" S:4 AP:- D:1 (This weapon may target a CHARACTER even if it is not the closest enemy unit. Each time you roll a wound roll of 6+ for this weapon, the target " +
+                                "Rf1 24\" S:4 AP:0 D:1 (This weapon may target a CHARACTER even if it is not the closest enemy unit. Each time you roll a wound roll of 6+ for this weapon, the target " +
                                 "suffers a mortal wound in addition to any other damage.)",
                         "Hunters from Hyperspace: During deployment, you can set up this unit in a hyperspace oubliette instead of placing it on the battlefield. At the end of any of your Movement " +
                                 "phases the Deathmarks can slip back into reality – set them up anywhere on the battlefield that is more than 9\" away from any enemy models.\n\n" +
@@ -294,7 +294,7 @@ data class UnitData (
                                 "Particle beamer\n" +
                                 "As3 24\" S:6 AP:0 D:1\n\n" +
                                 "Tesla carbine\n" +
-                                "As2 24\" S:5 AP:- D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1)",
+                                "As2 24\" S:5 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits instead of 1)",
                         "Reanimation Protocols (pg 82)\n\n" +
                                 "Evasion Engrams: Your opponent must subtract 1 from hit rolls that target this unit in the Shooting phase.\n\n" +
                                 "Shieldvanes: A model with shieldvanes has a Save characteristic of 3+.\n\n" +
@@ -604,6 +604,136 @@ data class UnitData (
                                 "Ml S:x2 AP:2 D:3 (Each servo-arm can only be used to make one attack each time this model fights. When a model attacks with this weapon, you must subtract 1 from the hit roll.)",
                         "Canticles of Omnissiah\n\n" +
                                 "Mindlock: Servitors improve both their Weapon Skill and Ballistic Skill to 4+, and their Leadership to 9, whilst" +
-                                "they are within 6\" of any friendly TECH-PRIESTS.")
+                                "they are within 6\" of any friendly TECH-PRIESTS."),
+                Unit("Cybernetica datasmith",
+                        "M:6 WS:3+ BS:3+ S:4 T:4 W:4 A:2 Sv:2+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Gamma pistol\n" +
+                                "Pl1 12\" S:6 AP:3 D:2\n\n" +
+                                "Power fist\n" +
+                                "Ml S:x2 AP:3 D:3",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Master of Machines: At the end of your Movement phase this model can repair a single friendly <FORGE WORLD> VEHICLE, ASTRA MILITARUM VEHICLE or QUESTOR MECHANICUS model within 3\". If the model being repaired is a <FORGE WORLD> or ASTRA MILITARUM model, it regains D3 lost wounds; if it is a QUESTOR MECHANICUS model, it regains 1 lost wound. A model may not be the target of the Master of Machines ability more than once per turn.\n\n" +
+                                "Refractor Field: This model has a 5+ invulnerable save."),
+                Unit("Sicarian Ruststalkers",
+                        "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:3 Sv:4+ Ld:6\n" +
+                                "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:4 Sv:4+ Ld:7",
+                        R.drawable.mech_ranger,
+                        "Chordclaw\n" +
+                                "Ml S:U AP:0 D:D3 (A chordclaw can only be used to make one attack each time this model fights. Each time you make a wound roll of 6+ with this weapon, the target suffers D3 mortal wounds instead of the normal damage.)\n\n" +
+                                "Transonic blades\n" +
+                                "Ml S:+1 AP:0 D:1 (Each time you make a wound roll of 6+ with this weapon, the target suffers a mortal wound instead of the normal damage.)\n\n" +
+                                "Transonic razor\n" +
+                                "Ml S:U AP:0 D:1 (Each time you make a wound roll of 6+ with this weapon, the target suffers a mortal wound instead of the normal damage.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save."),
+                Unit("Sicarian Infiltrators",
+                        "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:3 Sv:4+ Ld:6\n" +
+                                "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:4 Sv:4+ Ld:7",
+                        R.drawable.mech_ranger,
+                        "Flechette blaster\n" +
+                                "Pl5 12\" S:3 AP:0 D:1\n\n" +
+                                "Stubcarbine\n" +
+                                "Pl3 18\" S:4 AP:0 D:1\n\n" +
+                                "Power sword\n" +
+                                "Ml S:U AP:0 3 D:1\n\n" +
+                                "Taser goad\n" +
+                                "Ml S:+2 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits rather than 1.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Infiltrators: During deployment, you can set this unit up in concealment instead of placing it on the battlefield. At the end of any of your Movement phases, this unit can reveal its location – set it up anywhere on the battlefield that is more than 9\" from any enemy model.\n\n" +
+                                "Neurostatic Aura: Enemy units within 3\" of any Sicarian Infiltrators must subtract 1 from their Leadership."),
+                Unit("Fulgurite Electro-priests",
+                        "M:6 WS:3+ BS:4+ S:3 T:3 W:1 A:2 Sv:6+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Electroleech stave\n" +
+                                "Ml S:+2 AP:2 D:D3 (Each time you make a wound roll of 6+ with this weapon, the target suffers D3 mortal wounds instead of the normal damage.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Voltagheist Field: All models in this unit have a 5+ invulnerable save. When this unit completes a charge move, pick one of the target units you charged and roll a D6 for each model in the charging unit. Any rolls of 6 inflict a mortal wound on the unit you picked.\n\n" +
+                                "Siphoned Vigour: If this unit wipes out an enemy unit in the Fight phase, their invulnerable save is increased to 3+ for the rest of the battle.\n\n" +
+                                "Fanatical Devotion: Each time a model in this unit loses a wound, roll a D6; on a roll of 5 or 6, the model does not lose that wound."),
+                Unit("Corpuscarii Electro-priests",
+                        "M:6 WS:3+ BS:4+ S:3 T:3 W:1 A:2 Sv:6+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Electrostatic gauntlets (shooting)\n" +
+                                "As3 12\" S:5 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits rather than 1.)\n\n" +
+                                "Electrostatic gauntlets (melee)\n" +
+                                "Ml S:5 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits rather than 1.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Voltagheist Field: All models in this unit have a 5+ invulnerable save. When this unit completes a charge move, pick one of the target units you charged and roll a D6 for each model in the charging unit. Any rolls of 6 inflict a mortal wound on the unit you picked.\n\n" +
+                                "Fanatical Devotion: Each time a model in this unit loses a wound, roll a D6; on a roll of 5 or 6, the model does not lose that wound."),
+                Unit("Sydonian Dragoons",
+                        "M:10 WS:3+ BS:3+ S:5 T:6 W:6 A:3 Sv:4+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Phosphor serpenta\n" +
+                                "As1 18\" S:5 AP:1 D:1 (Units attacked by this weapon do not gain any bonus to their saving throws for being in cover.)\n\n" +
+                                "Radium jezzail\n" +
+                                "Hv2 S:5 AP:0 D:1 (This weapon may target a CHARACTER even if it is not the closest enemy unit. Each time you make a wound roll of 6+ for this weapon, it inflicts a mortal wound in addition to its normal damage.)\n\n" +
+                                "Taser lance\n" +
+                                "Ml S:+3 AP:1 D:2 (Each hit roll of 6+ with this weapon causes 3 hits rather than 1.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Broad Spectrum Data-tether: <FORGE WORLD> units within 3\" of any friendly models equipped with a broad spectrum data-tether at the start of the Morale phase add 1 to their Leadership for the duration of the phase.\n\n" +
+                                "Explodes: If a model in this unit is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 3\" suffers 1 mortal wound.\n\n" +
+                                "Incense Cloud: Your opponent must subtract 1 from all hit rolls for ranged weapons that target this unit."),
+                Unit("Ironstrider Ballistarii",
+                        "M:10 WS:3+ BS:3+ S:5 T:6 W:6 A:2 Sv:4+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Twin cognis autocannon\n" +
+                                "Hv4 48\" S:7 AP:1 D:2 (You may fire this weapon even if the firing model Advanced but you must subtract 2 from any hit rolls if you do so.)\n\n" +
+                                "Twin cognis lascannon\n" +
+                                "Hv2 48\" S:9 AP:3 D:D6 (You may fire this weapon even if the firing model Advanced but you must subtract 2 from any hit rolls if you do so.)",
+                        "Canticles of Omnissiah\n\n" +
+                                "Bionics: All models in this unit have a 6+ invulnerable save.\n\n" +
+                                "Broad Spectrum Data-tether: <FORGE WORLD> units within 3\" of any friendly models equipped with a broad spectrum data-tether at the start of the Morale phase add 1 to their Leadership for the duration of the phase.\n\n" +
+                                "Explodes: If a model in this unit is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 3\" suffers 1 mortal wound."),
+                Unit("Kastelan robots",
+                        "M:8 WS:4+ BS:4+ S:6 T:7 W:6 A:3 Sv:3+ Ld:10",
+                        R.drawable.mech_ranger,
+                        "Heavy phosphor blaster\n" +
+                                "Hv3 36\" S:6 AP:2 D:1 (Units attacked by this weapon do not gain any bonus to their saving throws for being in cover.)\n\n" +
+                                "Incendine combustor\n" +
+                                "HvD6 12\" S:5 AP:0 1 D:1 (This weapon automatically hits its target.)\n\n" +
+                                "Kastelan fists\n" +
+                                "Ml S:+4 AP:3 D:3",
+                        "Canticles of Omnissiah\n\n" +
+                                "Repulsor Grid: All models in this unit have a 5+ invulnerable save against shooting attacks. In addition, each time you roll a 6 (after re-rolls, but before modifiers) for a repulsor grid’s invulnerable saving throw, the unit that made that attack suffers a mortal wound.\n\n" +
+                                "Battle Protocols: When this unit is set up, the Aegis Protocol (see below) is in effect. You can attempt to change the unit’s battle protocol at the start of each of your Movement phases if there is a friendly <FORGE WORLD> Cybernetica Datasmith within 6\". To do so, roll a " +
+                                "D6; on a 2+ the attempt is successful and you can select any one of the three battle protocols to take effect from the start of the next battle round. Otherwise, the attempt fails and the unit’s current protocol remains in effect.\n" +
+                                "Aegis Protocol: Whilst this battle protocol is in effect, you can add 1 to any armour and invulnerable saving throws you make for models in the unit.\n" +
+                                "Conqueror Protocol: Whilst this battle protocol is in effect, this unit cannot shoot, but it can fight twice in each Fight phase instead of only once.\n" +
+                                "Protector Protocol: Whilst this battle protocol is in effect, this unit cannot move or charge, but you can double the number of shots it makes with each of its ranged weapons – i.e., the heavy phosphor blaster’s Type becomes Heavy 6 and the incendine combustor’s Type becomes Heavy 2D6.\n\n" +
+                                "Explodes: If a model in this unit is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 3\" suffers D3 mortal wounds."),
+                Unit("Onager Dunecrawler",
+                        "M:8 WS:5+ BS:3+ S:6 T:7 W:11 A:3 Sv:3+ Ld:8",
+                        R.drawable.mech_ranger,
+                        "Cognis heavy stubber\n" +
+                                "Hv3 36\" S:4 AP:0 D:1 (You may fire this weapon even if the firing model Advanced but you must subtract 2 from any hit rolls if you do so.)\n\n" +
+                                "Eradication beamer\n" +
+                                "HvD6 36\" S:8 AP:0 2 D:D3 (When attacking units within 12\", change this weapon’s Type to Heavy D3, but resolve the shots with an AP of -4 and a Damage of D6.)\n\n" +
+                                "Icarus array (Add 1 to all hit rolls made for this weapon against targets that can FLY. Subtract 1 from hit rolls against all other targets.)\n" +
+                                "- Daedalus missile launcher\n" +
+                                "Hv1 48\" S:7 AP:3 D:D6\n" +
+                                "- Gatling rocket launcher\n" +
+                                "Hv5 48\" S:6 AP:2 D:1\n" +
+                                "- Twin Icarus autocannon\n" +
+                                "Hv4 48\" S:7 AP:1 D:2\n\n" +
+                                "Neutron laser\n" +
+                                "HvD3 48\" S:10 AP:4 D:D6 (Treat damage rolls of 1 or 2 made by this weapon as 3 instead.)\n\n" +
+                                "Twin heavy phosphor blaster\n" +
+                                "Hv6 36\" S:6 AP:2 D:1 (Units attacked by this weapon do not gain any bonus to their saving throws for being in cover.)",
+                        "DAMAGE:\n" +
+                                "W:7-11 M:8\" BS:3+ A:3\n" +
+                                "W:3-5  M:6\" BS:4+ A:D3\n" +
+                                "W:1-2  M:4\" BS:5+ A:1\n\n" +
+                                "Canticles of Omnissiah\n\n" +
+                                "Emanatus Force Field: This model has a 5+ invulnerable save. You can re-roll invulnerable saving throws of 1 for any Onager Dunecrawler if it is within 6\" of at least one other friendly <FORGE WORLD> Onager Dunecrawler.\n\n" +
+                                "Smoke Launchers: Once per game, a model equipped with smoke launchers can use them instead of shooting any weapons in the Shooting phase; until your next Shooting phase your opponent must subtract 1 from all hit rolls for ranged weapons that target this vehicle.\n\n" +
+                                "Broad Spectrum Data-tether: <FORGE WORLD> units within 3\" of any friendly models equipped with a broad spectrum data-tether at the start of the Morale phase add 1 to their Leadership for the duration of the phase.\n\n" +
+                                "Crawler: This model can only Advance D3\", but ignores the -1 penalty to its hit rolls for moving and firing a Heavy weapon.\n\n" +
+                                "Explodes: If this model is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 6\" suffers D3 mortal wounds.")
+
         )
+
 )
