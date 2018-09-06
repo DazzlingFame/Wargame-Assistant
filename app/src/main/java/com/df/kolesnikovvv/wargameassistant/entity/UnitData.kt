@@ -489,7 +489,7 @@ data class UnitData (
         val admechs: ArrayList<Unit> = arrayListOf(
                 Unit("Belisarius Cawl",
                         "M:6 WS:2+ BS:2+ S:5 T:6 W:8 A:4 Sv:2+ Ld:9",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_belisarius,
                         "Solar atomiser\n" +
                                 "AsD3 12\" S:10 AP:4 D:D3 (If the target is within half range of this weapon, it has a Damage of D6.)\n\n" +
                                 "Arc scourge\n" +
@@ -508,7 +508,7 @@ data class UnitData (
                                 "Lord of Mars: You can re-roll any hit rolls in the Shooting phase for friendly MARS units within 6\"."),
                 Unit("Tech-priest Dominus",
                         "M:6 WS:3+ BS:2+ S:4 T:4 W:5 A:3 Sv:2+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_dominus,
                         "Eradication ray\n" +
                                 "HvD3 24\" S:6 AP:2 D:1 (Attacks from this weapon that target enemies at 8\" or less are resolved with an AP of -4 and a Damage of D3.)\n\n" +
                                 "Macrostubber\n" +
@@ -528,7 +528,7 @@ data class UnitData (
                                 "Refractor Field: This model has a 5+ invulnerable save."),
                 Unit("Tech-priest Enginseer",
                         "M:6 WS:4+ BS:4+ S:4 T:4 W:4 A:2 Sv:3+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_enginseer,
                         "Laspistol\n" +
                                 "Pl1 12\" S:3 AP:0 D:1\n\n" +
                                 "Omnissian axe\n" +
@@ -551,7 +551,7 @@ data class UnitData (
                 Unit("Skitarii Vanguard",
                         "M:6 WS:4+ BS:3+ S:3 T:3 W:1 A:1 Sv:4+ Ld:6\n" +
                                 "M:6 WS:4+ BS:3+ S:3 T:3 W:1 A:2 Sv:4+ Ld:7",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_vanguard,
                         "Radium carbine\n" +
                                 "As3 18\" S:3 AP:0 D:1 (Each time you make a wound roll of 6+ for this weapon, that hit inflicts 2 damage instead of 1.)",
                         "Canticles of Omnissiah\n\n" +
@@ -561,7 +561,7 @@ data class UnitData (
                                 "Enhanced Data-tether: You can re-roll failed Morale tests for a unit that includes a model with an enhanced data-tether."),
                 Unit("Kataphron breachers",
                         "M:6 WS:4+ BS:4+ S:5 T:5 W:3 A:3 Sv:3+ Ld:7",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_destroyer,
                         "Heavy arc rifle\n" +
                                 "Hv2 36\" S:6 AP:2 D:D3 (When attacking a VEHICLE, this weapon has a Damage of D6.)\n\n" +
                                 "Torsion cannon\n" +
@@ -576,7 +576,7 @@ data class UnitData (
                                 "can only Advance D3\"."),
                 Unit("Kataphron destroyers",
                         "M:6 WS:4+ BS:4+ S:5 T:5 W:3 A:2 Sv:4+ Ld:7",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_destroyer,
                         "Cognis flamer\n" +
                                 "AsD6 8\" S:4 AP:0 D:1 (This weapon automatically hits its target. In addition, when firing Overwatch with this weapon, roll two dice when determining how many attacks it makes and discard the lowest result.)\n\n" +
                                 "Heavy grav-cannon\n" +
@@ -592,7 +592,7 @@ data class UnitData (
                                 "can only Advance D3\"."),
                 Unit("Servitors",
                         "M:5 WS:5+ BS:5+ S:3 T:3 W:1 A:1 Sv:4+ Ld:6",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_servitor,
                         "Heavy bolter\n" +
                                 "Hv3 36\" S:5 AP:1 D:1\n\n" +
                                 "Multi-melta\n" +
@@ -607,7 +607,7 @@ data class UnitData (
                                 "they are within 6\" of any friendly TECH-PRIESTS."),
                 Unit("Cybernetica datasmith",
                         "M:6 WS:3+ BS:3+ S:4 T:4 W:4 A:2 Sv:2+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_progr,
                         "Gamma pistol\n" +
                                 "Pl1 12\" S:6 AP:3 D:2\n\n" +
                                 "Power fist\n" +
@@ -619,7 +619,7 @@ data class UnitData (
                 Unit("Sicarian Ruststalkers",
                         "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:3 Sv:4+ Ld:6\n" +
                                 "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:4 Sv:4+ Ld:7",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_stalkers,
                         "Chordclaw\n" +
                                 "Ml S:U AP:0 D:D3 (A chordclaw can only be used to make one attack each time this model fights. Each time you make a wound roll of 6+ with this weapon, the target suffers D3 mortal wounds instead of the normal damage.)\n\n" +
                                 "Transonic blades\n" +
@@ -631,7 +631,7 @@ data class UnitData (
                 Unit("Sicarian Infiltrators",
                         "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:3 Sv:4+ Ld:6\n" +
                                 "M:8 WS:3+ BS:3+ S:4 T:3 W:2 A:4 Sv:4+ Ld:7",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_infiltrators,
                         "Flechette blaster\n" +
                                 "Pl5 12\" S:3 AP:0 D:1\n\n" +
                                 "Stubcarbine\n" +
@@ -646,7 +646,7 @@ data class UnitData (
                                 "Neurostatic Aura: Enemy units within 3\" of any Sicarian Infiltrators must subtract 1 from their Leadership."),
                 Unit("Fulgurite Electro-priests",
                         "M:6 WS:3+ BS:4+ S:3 T:3 W:1 A:2 Sv:6+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_priest,
                         "Electroleech stave\n" +
                                 "Ml S:+2 AP:2 D:D3 (Each time you make a wound roll of 6+ with this weapon, the target suffers D3 mortal wounds instead of the normal damage.)",
                         "Canticles of Omnissiah\n\n" +
@@ -655,7 +655,7 @@ data class UnitData (
                                 "Fanatical Devotion: Each time a model in this unit loses a wound, roll a D6; on a roll of 5 or 6, the model does not lose that wound."),
                 Unit("Corpuscarii Electro-priests",
                         "M:6 WS:3+ BS:4+ S:3 T:3 W:1 A:2 Sv:6+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_priest,
                         "Electrostatic gauntlets (shooting)\n" +
                                 "As3 12\" S:5 AP:0 D:1 (Each hit roll of 6+ with this weapon causes 3 hits rather than 1.)\n\n" +
                                 "Electrostatic gauntlets (melee)\n" +
@@ -665,7 +665,7 @@ data class UnitData (
                                 "Fanatical Devotion: Each time a model in this unit loses a wound, roll a D6; on a roll of 5 or 6, the model does not lose that wound."),
                 Unit("Sydonian Dragoons",
                         "M:10 WS:3+ BS:3+ S:5 T:6 W:6 A:3 Sv:4+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_strider_meele,
                         "Phosphor serpenta\n" +
                                 "As1 18\" S:5 AP:1 D:1 (Units attacked by this weapon do not gain any bonus to their saving throws for being in cover.)\n\n" +
                                 "Radium jezzail\n" +
@@ -679,7 +679,7 @@ data class UnitData (
                                 "Incense Cloud: Your opponent must subtract 1 from all hit rolls for ranged weapons that target this unit."),
                 Unit("Ironstrider Ballistarii",
                         "M:10 WS:3+ BS:3+ S:5 T:6 W:6 A:2 Sv:4+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_strider_shoot,
                         "Twin cognis autocannon\n" +
                                 "Hv4 48\" S:7 AP:1 D:2 (You may fire this weapon even if the firing model Advanced but you must subtract 2 from any hit rolls if you do so.)\n\n" +
                                 "Twin cognis lascannon\n" +
@@ -690,7 +690,7 @@ data class UnitData (
                                 "Explodes: If a model in this unit is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 3\" suffers 1 mortal wound."),
                 Unit("Kastelan robots",
                         "M:8 WS:4+ BS:4+ S:6 T:7 W:6 A:3 Sv:3+ Ld:10",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_robot,
                         "Heavy phosphor blaster\n" +
                                 "Hv3 36\" S:6 AP:2 D:1 (Units attacked by this weapon do not gain any bonus to their saving throws for being in cover.)\n\n" +
                                 "Incendine combustor\n" +
@@ -707,7 +707,7 @@ data class UnitData (
                                 "Explodes: If a model in this unit is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 3\" suffers D3 mortal wounds."),
                 Unit("Onager Dunecrawler",
                         "M:8 WS:5+ BS:3+ S:6 T:7 W:11 A:3 Sv:3+ Ld:8",
-                        R.drawable.mech_ranger,
+                        R.drawable.mech_crawler,
                         "Cognis heavy stubber\n" +
                                 "Hv3 36\" S:4 AP:0 D:1 (You may fire this weapon even if the firing model Advanced but you must subtract 2 from any hit rolls if you do so.)\n\n" +
                                 "Eradication beamer\n" +
