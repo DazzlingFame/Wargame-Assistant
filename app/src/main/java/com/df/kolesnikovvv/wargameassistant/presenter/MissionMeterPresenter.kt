@@ -23,7 +23,7 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
     override fun onViewCreated() {
         interactor?.updateClassFromPreferences(context)
 
-        val turnVpArrayList = GamePoints.parseToTurnVpArrayList()
+        val turnVpArrayList = GamePoints.gameVp
         val secMissionArrayList = GamePoints.parseToSecMissionsArrayList(missionNamesArray)
 
         view?.setDataToView(turnVpArrayList, secMissionArrayList)
@@ -40,7 +40,7 @@ class MissionMeterPresenter(private var view: MissionMeterContract.View?, privat
 
     override fun resetClicked() {
         GamePoints.reset()
-        view?.setDataToView(GamePoints.parseToTurnVpArrayList(), GamePoints.parseToSecMissionsArrayList(missionNamesArray))
+        view?.setDataToView(GamePoints.gameVp, GamePoints.parseToSecMissionsArrayList(missionNamesArray))
     }
 
     override fun getFullResultClicked() {

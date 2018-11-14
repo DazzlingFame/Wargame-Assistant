@@ -9,10 +9,13 @@ class MissionMeterEtTw(_my: Boolean, _key: Int): TextWatcher {
     private val my = _my
 
     override fun afterTextChanged(s: Editable?) {
-        if (my)
-            GamePoints.myTurnVp[key] = s.toString()
-        else
-            GamePoints.oppTurnVp[key] = s.toString()
+        if (my) {
+//            GamePoints.myTurnVp[key] = s.toString()
+            GamePoints.gameVp[key].myVp = s.toString()
+        } else {
+//            GamePoints.oppTurnVp[key] = s.toString()
+            GamePoints.gameVp[key].oppVp = s.toString()
+        }
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
