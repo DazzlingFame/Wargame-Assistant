@@ -10,11 +10,9 @@ class MissionMeterEtTw(_my: Boolean, _key: Int): TextWatcher {
 
     override fun afterTextChanged(s: Editable?) {
         if (my) {
-//            GamePoints.myTurnVp[key] = s.toString()
-            GamePoints.gameVp[key].myVp = s.toString()
+            GamePoints.gameVp[key - 1].myVp = s.toString()
         } else {
-//            GamePoints.oppTurnVp[key] = s.toString()
-            GamePoints.gameVp[key].oppVp = s.toString()
+            GamePoints.gameVp[key - 1].oppVp = s.toString()
         }
     }
 

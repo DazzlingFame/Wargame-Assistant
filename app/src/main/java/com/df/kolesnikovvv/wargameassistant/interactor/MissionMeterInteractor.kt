@@ -10,7 +10,7 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
 
     override fun updateClassFromPreferences(context: Context) {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-//        val savedEtVp = sharedPref.getString("gameData", ",,,,,,,;,,,,,,,")
+
         val savedEtVp = sharedPref.getString("gameData", "")
 
         val mySecMissionVp = sharedPref.getString("mySecVp", "0,0,0")
@@ -37,8 +37,6 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
         val mySecMissionVp: String = GamePoints.mySecVp[0].toString() + "," + GamePoints.mySecVp[1].toString() + "," + GamePoints.mySecVp[2].toString()
         val oppSecMissionVp: String = GamePoints.oppSecVp[0].toString() + "," + GamePoints.oppSecVp[1].toString() + "," + GamePoints.oppSecVp[2].toString()
 
-        val gameDataString = parseEtResultClassToString()
-
         with(sharedPref.edit()) {
             putString("gameData", parseEtResultClassToString())
             putString("mySecVp", mySecMissionVp)
@@ -49,26 +47,7 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
         }
     }
 
-    fun parseEtResultClassToString(): String {
-//        var resultString = ""
-////        for (i in 0 until GamePoints.myTurnVp.size - 1) {
-////            resultString = resultString + GamePoints.myTurnVp[i] + ","
-////        }
-////
-////        resultString += GamePoints.myTurnVp[GamePoints.myTurnVp.size - 1]
-////
-////        resultString += ";"
-////
-////
-////
-////        for (i in 0 until (GamePoints.oppTurnVp.size - 1)) {
-////            resultString = resultString + GamePoints.oppTurnVp[i] + ","
-////        }
-////        resultString += GamePoints.oppTurnVp[GamePoints.oppTurnVp.size - 1]
-////
-////
-////
-////        return resultString
+    private fun parseEtResultClassToString(): String {
 
         var resultString = ""
         val gameSize = GamePoints.gameVp.size
@@ -84,18 +63,10 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
 
     }
 
-    fun parseEtResultStringToClass(result: String) {
-//            val myResult = result.substring(0, result.indexOf(";"))
-//            GamePoints.myTurnVp = myResult.split(",").toTypedArray()
-//
-//            val oppResult = result.substring(result.indexOf(";") + 1, result.length)
-//            GamePoints.oppTurnVp = oppResult.split(",").toTypedArray()
-
+    private fun parseEtResultStringToClass(result: String) {
         if (result == "") {
             GamePoints.gameVp = TurnVp.getEmptyGame(GamePoints.gameSize)
         } else {
-//            var gameData = result
-//            var turnData: String
 
             val turnsArray = result.split(";")
             for ((currentIndex, turnData) in turnsArray.withIndex()) {
@@ -106,21 +77,6 @@ class MissionMeterInteractor: MissionMeterContract.Interactor {
                     GamePoints.gameVp[currentIndex] = TurnVp(currentIndex, turnData.substring(0, delimeterIndex), turnData.substring(delimeterIndex + 1, turnData.length))
                 }
             }
-
-
-//            while (gameData.contains(";")) {
-//                turnData = gameData.substring(0, result.indexOf(";"))
-//                val delimeterIndex = turnData.indexOf(",")
-//                if (delimeterIndex == 0) {
-//                    GamePoints.gameVp[currentIndex] = TurnVp(currentIndex, "", "")
-//                } else {
-//                    GamePoints.gameVp[currentIndex] = TurnVp(currentIndex, turnData.substring(0, delimeterIndex), turnData.substring(delimeterIndex + 1, turnData.length))
-//                }
-//
-//                currentIndex++
-//
-//                gameData = gameData.substring(gameData.indexOf(";") + 1, gameData.length)
-//            }
         }
     }
 }

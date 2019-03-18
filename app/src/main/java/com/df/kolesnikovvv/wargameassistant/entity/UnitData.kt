@@ -707,7 +707,7 @@ data class UnitData (
                                 "Explodes: If a model in this unit is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 3\" suffers D3 mortal wounds."),
                 Unit("Onager Dunecrawler",
                         "M:8 WS:5+ BS:3+ S:6 T:7 W:11 A:3 Sv:3+ Ld:8",
-                        R.drawable.mech_crawler,
+                        R.drawable.mech_dunecrawler,
                         "Cognis heavy stubber\n" +
                                 "Hv3 36\" S:4 AP:0 D:1 (You may fire this weapon even if the firing model Advanced but you must subtract 2 from any hit rolls if you do so.)\n\n" +
                                 "Eradication beamer\n" +
@@ -733,7 +733,6 @@ data class UnitData (
                                 "Broad Spectrum Data-tether: <FORGE WORLD> units within 3\" of any friendly models equipped with a broad spectrum data-tether at the start of the Morale phase add 1 to their Leadership for the duration of the phase.\n\n" +
                                 "Crawler: This model can only Advance D3\", but ignores the -1 penalty to its hit rolls for moving and firing a Heavy weapon.\n\n" +
                                 "Explodes: If this model is reduced to 0 wounds, roll a D6 before removing the model from the battlefield; on a 6 it explodes, and each unit within 6\" suffers D3 mortal wounds.")
-
         )
 
 )

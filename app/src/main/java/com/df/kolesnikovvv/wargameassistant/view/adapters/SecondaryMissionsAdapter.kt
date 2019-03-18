@@ -80,7 +80,7 @@ class SecondaryMissionsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     }
 
     private fun bindVpTurnHolder(holder: TurnVpViewHolder, element: TurnVp) {
-        holder.name.text = "Ход " + (element.turnIndex + 1).toString()
+        holder.name.text = "Ход " + element.turnIndex.toString()
         holder.myVp.setText(element.myVp)
         holder.oppVp.setText(element.oppVp)
 
@@ -97,7 +97,7 @@ class SecondaryMissionsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() 
         return TYPE_SEC_MISSION
     }
 
-    fun getItem(position: Int): MissionMeterElement? {
+    private fun getItem(position: Int): MissionMeterElement? {
         if (position < 0 || position >= itemList.size)
             return null
 
@@ -115,7 +115,7 @@ class SecondaryMissionsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
 
     class TurnVpViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.findViewById(R.id.tv_turn) as TextView
+        val name: TextView = itemView.findViewById(R.id.tv_turn)
         val myVp: EditText = itemView.findViewById(R.id.et_my_vp)
         val oppVp: EditText = itemView.findViewById(R.id.et_opp_vp)
     }

@@ -9,26 +9,14 @@ class GamePoints {
     }
 
     companion object {
-        val gameSize = 7
+        const val gameSize = 7
         var myName = ""
         var oppName = ""
-
-//        var myTurnVp: Array<String> = arrayOf("","","","","","","")
-//        var oppTurnVp: Array<String> = arrayOf("","","","","","","")
 
         var gameVp: ArrayList<TurnVp> = TurnVp.getEmptyGame(gameSize)
 
         var mySecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
         var oppSecVp: ArrayList<Int> = arrayListOf(0, 0, 0)
-
-//        fun parseToTurnVpArrayList(): ArrayList<TurnVp> {
-//            val turnArray: ArrayList<TurnVp> = arrayListOf()
-//            for (index in 0..6) {
-//                turnArray.add(TurnVp(index, myTurnVp[index], oppTurnVp[index]))
-//            }
-//
-//            return turnArray
-//        }
 
         fun parseToSecMissionsArrayList(missionNameArray: ArrayList<String>): ArrayList<SecondaryMissionVp> {
             val secMissionsArray: ArrayList<SecondaryMissionVp> = arrayListOf()
@@ -40,8 +28,6 @@ class GamePoints {
 
         fun reset() {
             gameVp = TurnVp.getEmptyGame(gameSize)
-//            myTurnVp = arrayOf("","","","","","","")
-//            oppTurnVp = arrayOf("","","","","","","")
             mySecVp = arrayListOf(0, 0, 0)
             oppSecVp = arrayListOf(0, 0, 0)
         }
@@ -57,31 +43,6 @@ class GamePoints {
         }
 
         private fun generateResult(): Map<TotalVpTypes, Int> {
-//            var myTotalVp = 0
-//            for (i in myTurnVp) {
-//                if (i != "")
-//                    myTotalVp += i.toInt()
-//            }
-//            myTotalVp += mySecVp[0] + mySecVp[1] + mySecVp[2]
-//
-//            var oppTotalVp = 0
-//            for (i in oppTurnVp) {
-//                if (i != "")
-//                    oppTotalVp += i.toInt()
-//            }
-//            oppTotalVp += oppSecVp[0] + oppSecVp[1] + oppSecVp[2]
-//
-//            val vpDifference = when {
-//                myTotalVp - oppTotalVp > 20 -> 20
-//                myTotalVp - oppTotalVp < -20 -> -20
-//                else -> myTotalVp - oppTotalVp
-//            }
-//            val totalResult = 10 + vpDifference / 2
-//
-//            return mapOf(TotalVpTypes.MY_TOTAL_VP to myTotalVp,
-//                    TotalVpTypes.OPP_TOTAL_VP to oppTotalVp,
-//                    TotalVpTypes.TOTAL_RESULT to totalResult)
-
             var myTotalVp = 0
             var oppTotalVp = 0
             for (i in gameVp) {

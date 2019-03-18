@@ -14,12 +14,9 @@ import com.df.kolesnikovvv.wargameassistant.DrawerContract
 import com.df.kolesnikovvv.wargameassistant.R
 import com.df.kolesnikovvv.wargameassistant.presenter.CpMeterPresenter
 import com.df.kolesnikovvv.wargameassistant.presenter.DrawerPresenter
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 
 class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var mAdView: AdView
+//    private lateinit var mAdView: AdView
 
     private val presenter: CpMeterContract.Presenter = CpMeterPresenter(this, this)
 
@@ -71,10 +68,10 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
         presenter.onViewCreated()
 
         // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
-        MobileAds.initialize(this, "ca-app-pub-9010106401458654/2987228754")
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+//        MobileAds.initialize(this, "ca-app-pub-9010106401458654/2987228754")
+//        mAdView = findViewById(R.id.adView)
+//        val adRequest = AdRequest.Builder().build()
+//        mAdView.loadAd(adRequest)
     }
 
     override fun setDataToView(myCp: Int, oppCp: Int) {
@@ -121,19 +118,19 @@ class CpMeterActivity : CpMeterContract.View, BaseDrawerActivity(), NavigationVi
         super.onResume()
 
         // Resume the AdView.
-        mAdView.resume()
+//        mAdView.resume()
     }
 
     public override fun onPause() {
         // Pause the AdView.
-        mAdView.pause()
+//        mAdView.pause()
 
         super.onPause()
     }
 
     public override fun onDestroy() {
         // Destroy the AdView.
-        mAdView.destroy()
+//        mAdView.destroy()
 
         super.onDestroy()
     }
